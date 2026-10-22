@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Central de Materiais - Make.it</title>
+<meta name="description" content="Book, simulador, imagens e memorial descritivo dos empreendimentos Make.it para imobiliárias e corretores parceiros.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23FF9100'/%3E%3Crect x='9' y='13' width='5' height='11' fill='white'/%3E%3Crect x='17' y='9' width='5' height='15' fill='white'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --laranja:#FF9100;
+  --laranja-forte:#E07B00;
+  --laranja-suave:#FFF3E3;
+  --azul:#154386;
+  --ink:#000;
+  --body:#474747;
+  --muted:#7d7d7d;
+  --line:#E8E8E8;
+  --surface:#F3F3F3;
+  --page:#F3F3F3;
+  --hdr:0px;
+  /* Gilroy é a fonte oficial da marca (licença paga). A Urbanist é a substituta web mais próxima.
+     Com a licença da Gilroy, basta incluir o @font-face e ela assume automaticamente. */
+  --fonte:"Gilroy","Urbanist","Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ease:cubic-bezier(.22,.72,.18,1);
+  --pad:clamp(16px,3vw,40px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hdr) + 8px)}
+body{margin:0;background:#fff;color:var(--body);font-family:var(--fonte);font-size:1rem;font-weight:500;line-height:1.6;-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+[hidden]{display:none!important}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--azul);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1,h2,h3,p{margin:0}
+h2,h3{color:var(--ink);font-weight:800;letter-spacing:-.035em;line-height:1.02}
+
+/* ================= Cabeçalho + título ================= */
+body{background:var(--page)}
+.in{max-width:1120px;margin:0 auto;padding:0 var(--pad)}
+.head{background:#fff;border-bottom:4px solid var(--laranja);box-shadow:0 14px 28px -20px rgba(0,0,0,.25)}
+.hb{display:flex;align-items:center;justify-content:space-between;gap:14px 24px;min-height:clamp(96px,9.5vw,116px);padding:18px 0}
+.head h1{color:var(--ink);font-weight:800;letter-spacing:-.05em;line-height:.96;font-size:clamp(2rem,3.8vw,3.1rem)}
+.logo{display:block;line-height:0}
+.logo img{height:clamp(44px,5vw,56px);width:auto}
+.cta{background:#000;color:#fff;padding:10px 18px;border-radius:999px;font-weight:700;font-size:.875rem;text-decoration:none}
+.cta:hover{background:var(--laranja);color:#000}
+.rt{display:flex;align-items:center;gap:16px}
+/* a linha laranja termina nos dois predinhos do logo */
+.rule{position:relative;height:4px;background:var(--laranja)}
+
+
+/* ================= Busca ================= */
+:root{--sh:0 1px 2px rgba(0,0,0,.04),0 14px 34px -18px rgba(0,0,0,.16)}
+.busca{padding:clamp(22px,3vw,34px) 0 0}
+.painel{background:#fff;border-radius:28px;padding:14px;display:grid;gap:12px;box-shadow:var(--sh)}
+.seg{display:grid;grid-template-columns:minmax(220px,1.9fr);grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;border-radius:20px;overflow:hidden}
+.cel{position:relative;background:#fff;padding:12px 18px 11px;min-width:0;transition:background .15s,box-shadow .15s}
+.cel:hover{background:#FBFBFB}
+.cel:focus-within{background:#FFFAF2;box-shadow:inset 0 -2px 0 var(--laranja)}
+.cel label{display:block;font-size:.6875rem;font-weight:700;color:#8b8b8b;margin-bottom:1px}
+.cel input,.cel select{display:block;width:100%;height:26px;border:0;background:transparent;padding:0;font:inherit;font-size:.9375rem;font-weight:700;color:#000;outline:none}
+.cel select{appearance:none;-webkit-appearance:none;padding-right:22px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0 center}
+.cel input::placeholder{color:#a0a0a0;font-weight:500}
+.cel input[type=search]::-webkit-search-cancel-button{display:none}
+.cel--busca{padding-left:50px}
+.cel--busca svg{position:absolute;left:19px;top:50%;transform:translateY(-50%);color:#000;pointer-events:none}
+.mais{display:none;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:999px;border:1px solid #DEDEDE;background:#fff;font-weight:700;font-size:.9375rem}
+.mais .n{display:none;min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--laranja);color:#000;font-size:.75rem;line-height:20px;text-align:center}
+.mais .n.on{display:inline-block}
+.frow-b{display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px;padding:2px 10px 0}
+.grp{display:flex;align-items:center;gap:12px}
+.grp .lb{font-size:.8125rem;font-weight:700;color:#6b6b6b}
+.dorm{display:flex;gap:6px}
+.dorm button{height:38px;min-width:46px;padding:0 16px;border-radius:999px;border:1px solid #DEDEDE;background:#fff;font-weight:700;font-size:.875rem;transition:background .15s,color .15s,border-color .15s}
+.dorm button:hover{border-color:#000}
+.dorm button[aria-pressed="true"]{background:#000;color:#fff;border-color:#000}
+.pillsel{appearance:none;-webkit-appearance:none;height:38px;border:1px solid #DEDEDE;border-radius:999px;background:#fff;padding:0 36px 0 16px;font:inherit;font-size:.875rem;font-weight:700;color:#000;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:border-color .15s}
+.pillsel:hover{border-color:#000}
+.pillsel:focus{outline:none;border-color:#000;box-shadow:0 0 0 3px rgba(255,145,0,.3)}
+.limpar{margin-left:auto;height:38px;padding:0 4px;border:0;background:transparent;font-weight:700;font-size:.875rem;color:#000;text-decoration:underline;text-decoration-color:#c4c4c4;text-underline-offset:4px}
+.limpar:hover{text-decoration-color:var(--laranja)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags:empty{display:none}
+.tag-f{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 9px 0 14px;border-radius:999px;border:0;background:var(--laranja-suave);color:#5a3200;font-weight:700;font-size:.8125rem}
+.tag-f svg{flex:none}
+.tag-f:hover{background:#ffe3bd}
+
+.barra{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;margin:0 0 14px}
+.total{font-weight:600;color:#6b6b6b;font-size:.9375rem}
+.total b{color:#000;font-weight:800}
+.ord{display:flex;align-items:center;gap:10px}
+.ord label{font-size:.8125rem;font-weight:700;color:#6b6b6b}
+.ord .pillsel{height:40px;background-color:#fff;border-color:transparent;box-shadow:var(--sh)}
+.vazio{background:#fff;border-radius:28px;padding:56px 24px;text-align:center;box-shadow:var(--sh)}
+.vazio h3{font-size:1.375rem;font-weight:800;letter-spacing:-.03em;color:#000}
+.vazio p{margin:6px 0 20px;color:#6b6b6b}
+.vazio button{height:44px;padding:0 24px;border-radius:999px;border:0;background:#000;color:#fff;font-weight:700}
+.vazio button:hover{background:var(--laranja);color:#000}
+
+/* ================= Lista de empreendimentos ================= */
+.lista{max-width:1120px;margin:0 auto;padding:clamp(20px,2.6vw,28px) var(--pad) clamp(56px,7vw,88px)}
+.cards{display:grid;gap:16px}
+.emp{display:grid;grid-template-columns:minmax(0,290px) minmax(0,1fr);background:#fff;border-radius:28px;overflow:hidden;box-shadow:var(--sh);transition:box-shadow .3s}
+.emp:hover{box-shadow:0 1px 2px rgba(0,0,0,.05),0 24px 50px -22px rgba(0,0,0,.26)}
+.emp .ph{position:relative;display:block;width:100%;min-height:236px;padding:0;border:0;background:#d9d9d9;overflow:hidden}
+.emp .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.emp:hover .ph img{transform:scale(1.045)}
+.emp .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.38),rgba(0,0,0,0) 42%);pointer-events:none}
+.cnt{position:absolute;z-index:2;left:14px;bottom:14px;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px 0 10px;border-radius:999px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;font-size:.75rem;font-weight:700}
+.ct{display:flex;flex-direction:column;gap:16px;padding:24px 26px 22px;min-width:0}
+.st{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:.8125rem;font-weight:700;color:#000}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--laranja);box-shadow:0 0 0 4px rgba(255,145,0,.2)}
+.dot.cz{background:#9a9a9a;box-shadow:0 0 0 4px rgba(0,0,0,.07)}
+.st .mc{padding:3px 11px;border-radius:999px;background:var(--laranja-suave);color:#8A4B00;font-size:.75rem}
+.hd{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;margin-top:-4px}
+.hd h2{font-size:clamp(1.9rem,2.8vw,2.5rem);letter-spacing:-.045em;line-height:1}
+.loc{display:flex;align-items:center;gap:6px;margin-top:9px;color:#6b6b6b;font-weight:600;font-size:.9375rem}
+.loc svg{color:var(--laranja-forte);flex:none}
+.ver{display:inline-flex;align-items:center;gap:12px;height:44px;padding:0 6px 0 20px;border-radius:999px;border:0;background:#000;color:#fff;font-weight:700;font-size:.875rem;transition:background .2s}
+.ver .ar{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--laranja);color:#000;transition:transform .25s var(--ease)}
+.ver:hover{background:#222}
+.ver:hover .ar{transform:translateX(2px)}
+.specs{display:flex;flex-wrap:wrap;gap:8px 26px;margin:0;padding:0;list-style:none}
+.specs li{display:flex;align-items:center;gap:8px;font-size:.9375rem;font-weight:700;color:#000}
+.specs svg{color:var(--laranja-forte);flex:none}
+.mb{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#EBEBEB;border:1px solid #EBEBEB;border-radius:18px;overflow:hidden;margin-top:auto}
+.tl{display:flex;align-items:center;gap:12px;min-height:64px;padding:12px 14px;background:#fff;color:#000;text-decoration:none;border:0;text-align:left;transition:background .15s}
+.tl .ti{flex:none;color:var(--laranja-forte);display:grid;place-items:center}
+.tl .tx{display:flex;flex-direction:column;min-width:0;line-height:1.2}
+.tl .tn{font-weight:800;font-size:.9375rem;letter-spacing:-.015em}
+.tl .ta{display:inline-flex;align-items:center;gap:3px;font-size:.75rem;font-weight:600;color:#8b8b8b;margin-top:2px}
+a.tl:hover,button.tl:hover{background:#FFF6EA}
+a.tl:hover .ta,button.tl:hover .ta{color:#8A4B00}
+.tl.off{background:#FAFAFA;color:#a8a8a8;cursor:default}
+.tl.off .ti{color:#c6c6c6}
+.tl.off .ta{color:#b4b4b4}
+
+.emp.edge{grid-template-columns:minmax(0,290px) minmax(0,1fr)}
+.emp.edge .ph{display:grid;place-items:center;background:#000;min-height:190px}
+.emp.edge .ph::after{display:none}
+.emp.edge .ct{justify-content:center}
+.emp.edge h2{font-size:clamp(1.9rem,2.8vw,2.5rem);letter-spacing:-.045em;line-height:1;color:#000}
+.emp.edge .soon{margin-top:10px;max-width:34em;color:#6b6b6b;font-weight:500;font-size:.9375rem}
+
+/* ================= Sobre + rodapé ================= */
+.sobre{background:#000;color:#fff;padding:clamp(28px,3.4vw,40px) 0 24px;border-radius:28px 28px 0 0}
+.sobre .box{max-width:1120px;margin:0 auto;padding:0 var(--pad)}
+.sobre .t2{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:end}
+.sobre h2{color:#fff;font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.04;letter-spacing:-.04em}
+.sobre h2 span{display:block}
+.sobre .txt{color:#a8a8a8;font-size:.9375rem;max-width:26em}
+.foot{display:grid;gap:16px}
+.foot .r1{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 32px}
+.foot .logo img{height:44px}
+.foot .slogan{color:#fff;font-weight:700;font-size:.9375rem;letter-spacing:-.01em}
+.foot .contato{display:flex;flex-wrap:wrap;gap:8px}
+.foot .contato a{background:var(--laranja);color:#000;padding:10px 20px;border-radius:999px;font-weight:700;font-size:.875rem;text-decoration:none}
+.foot small{color:#808080;font-size:.75rem;line-height:1.7;max-width:62em}
+.sobre :focus-visible{outline-color:var(--laranja)}
+
+/* ================= Ficha (modal) ================= */
+dialog.ficha{border:0;padding:0;margin:auto;width:min(980px,calc(100% - 32px));max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);border-radius:32px;background:#fff;color:var(--body);overflow:auto;box-shadow:0 40px 110px -20px rgba(0,0,0,.4)}
+dialog.ficha::backdrop{background:rgba(8,8,8,.6);backdrop-filter:blur(4px)}
+.xw{position:sticky;top:0;height:0;display:flex;justify-content:flex-end;z-index:6}
+.x{margin:16px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;box-shadow:0 4px 16px rgba(0,0,0,.1);transition:background .15s}
+.x:hover{background:var(--surface)}
+.fgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,4vw,52px);padding:clamp(20px,3.5vw,40px)}
+.gal .main{position:relative;border-radius:22px;overflow:hidden;background:var(--surface);aspect-ratio:4/3}
+.gal .main img{width:100%;height:100%;object-fit:cover}
+.gal .nv{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.94);display:grid;place-items:center;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+.gal .nv:hover{background:#fff}
+.gal .pv{left:14px}.gal .nx{right:14px}
+.gal .gcnt{position:absolute;right:14px;bottom:14px;background:rgba(0,0,0,.65);color:#fff;font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:999px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:10px;margin-top:10px}
+.thumbs button{padding:0;border:0;border-radius:14px;overflow:hidden;aspect-ratio:3/2;opacity:.6;background:var(--surface);transition:opacity .15s}
+.thumbs button img{width:100%;height:100%;object-fit:cover}
+.thumbs button:hover{opacity:1}
+.thumbs button[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px #fff,0 0 0 4px var(--laranja)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;padding:0;list-style:none}
+.tags li{font-size:.75rem;font-weight:700;padding:5px 12px;border-radius:999px;background:var(--surface);color:var(--body)}
+.tags li.o{background:var(--laranja-suave);color:#8A4B00}
+.info h2{font-size:clamp(2.2rem,3.4vw,3rem);letter-spacing:-.045em}
+.f-loc{margin-top:10px;font-weight:700;color:var(--ink);font-size:1.0625rem}
+.addr{margin-top:2px;color:var(--muted);font-size:.9375rem}
+.addr a{color:var(--ink);font-weight:700;text-underline-offset:3px;text-decoration-color:#bbb;white-space:nowrap}
+.addr a:hover{text-decoration-color:var(--laranja)}
+.ffacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:16px 20px;margin:24px 0 0;padding:20px 0 0;border-top:1px solid var(--line)}
+.ffacts dt{font-size:.8125rem;color:var(--muted);font-weight:600}
+.ffacts dd{margin:2px 0 0;font-weight:700;color:var(--ink);font-size:1.0625rem;line-height:1.3}
+.mats{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:10px}
+.mat{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%;padding:12px 16px 12px 12px;border-radius:18px;border:1px solid var(--line);background:#fff;color:var(--ink);text-decoration:none;text-align:left;transition:border-color .15s,background .15s}
+.mat .mi{width:44px;height:44px;border-radius:13px;background:var(--laranja-suave);color:var(--laranja-forte);display:grid;place-items:center}
+.mat strong{display:block;font-weight:700;font-size:1rem;line-height:1.2}
+.mat small{display:block;color:var(--muted);font-weight:500;font-size:.8125rem;margin-top:1px}
+.mat .ma{display:inline-flex;align-items:center;gap:4px;font-size:.8125rem;font-weight:700}
+a.mat:hover,button.mat:hover{border-color:var(--ink);background:var(--surface)}
+.mat.off{background:var(--surface);border-color:transparent;color:#999;cursor:default}
+.mat.off .mi{background:#ececec;color:#b0b0b0}
+.mat.off small,.mat.off .ma{color:#a3a3a3}
+.more{padding:0 clamp(20px,3.5vw,40px) clamp(24px,3.5vw,40px)}
+.tabs{display:flex;flex-wrap:wrap;gap:4px 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.tabs button{background:none;border:0;padding:12px 0;margin-bottom:-1px;font-weight:700;font-size:.9375rem;color:var(--muted);border-bottom:2px solid transparent}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--laranja)}
+.panel[hidden]{display:none}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.5fr);gap:6px 24px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.row:last-child{border-bottom:0}
+.row b{font-weight:700;color:var(--ink)}
+.row em{font-style:normal;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{background:var(--surface);padding:8px 14px;border-radius:999px;font-size:.875rem;font-weight:600;color:var(--ink)}
+.list{margin:0;padding:0;list-style:none;columns:2 300px;column-gap:40px}
+.list li{break-inside:avoid;position:relative;padding:0 0 12px 20px}
+.list li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--laranja)}
+
+
+.gcats{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.gcats button{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:999px;border:1px solid #DEDEDE;background:#fff;font-weight:700;font-size:.8125rem;transition:background .15s,color .15s,border-color .15s}
+.gcats button span{font-size:.6875rem;font-weight:700;color:#8b8b8b}
+.gcats button:hover{border-color:#000}
+.gcats button[aria-selected="true"]{background:#000;color:#fff;border-color:#000}
+.gcats button[aria-selected="true"] span{color:var(--laranja)}
+.gal .main.contain{background:#fff;box-shadow:inset 0 0 0 1px #EAEAEA}
+.gal .main.contain img{object-fit:contain}
+.gcap{position:absolute;left:14px;bottom:14px;max-width:calc(100% - 120px);padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.94);color:#000;font-size:.8125rem;font-weight:700;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.gal .dl{border:0;cursor:pointer;position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.94);color:#000;display:grid;place-items:center;box-shadow:0 2px 12px rgba(0,0,0,.18);transition:background .15s}
+.gal .dl:hover{background:var(--laranja)}
+.dlall{font:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:10px;margin-top:14px;height:44px;padding:0 18px;border-radius:999px;border:1px solid #DEDEDE;background:#fff;color:#000;font-weight:700;font-size:.875rem;text-decoration:none;transition:border-color .15s,background .15s}
+.dlall span:not(.zl){font-size:.6875rem;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--laranja-suave);color:#8A4B00}
+.dlall:hover{border-color:#000;background:#FBFBFB}
+
+/* ================= Responsivo ================= */
+@media (max-width:900px){
+  .seg{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:row}
+  .seg.sem-tipo .cel:last-child{grid-column:1/-1}
+  .cel--busca{grid-column:1/-1}
+  .emp,.emp.edge{grid-template-columns:1fr}
+  .emp .ph{min-height:0;aspect-ratio:16/8}
+  .emp.edge .ph{aspect-ratio:auto;min-height:120px}
+  .ct{padding:20px}
+  .mb{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fgrid{grid-template-columns:1fr}
+  dialog.ficha{width:100%;max-height:100vh;max-height:100dvh;height:100vh;height:100dvh;border-radius:0}
+  .row{grid-template-columns:1fr 1fr}
+  .row em{grid-column:1/-1}
+}
+@media (max-width:700px){
+  .mais{display:inline-flex}
+  #extra{display:none}
+  #extra.open{display:flex}
+  .frow-b{flex-direction:column;align-items:stretch;gap:14px;padding:4px 6px 0}
+  .grp{justify-content:space-between}
+  .limpar{margin-left:0;align-self:flex-start}
+}
+@media (max-width:560px){
+  .hd .ver{width:100%;justify-content:space-between}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .mk{animation:none}
+  *{transition-duration:.01ms!important}
+}
+
+/* ================================================================
+   MAKE.IT / CENTRAL DE MATERIAIS
+   Direção de arte 2026: interface editorial para parceiros comerciais.
+   Apenas apresentação visual — dados e funções originais preservados.
+   ================================================================ */
+:root{
+  --laranja:#FF9100;
+  --laranja-forte:#CC7200;
+  --laranja-suave:#FFF3E3;
+  --azul:#154386;
+  --ink:#151719;
+  --body:#4B5259;
+  --muted:#778089;
+  --line:#E5E8EB;
+  --surface:#F5F6F7;
+  --page:#F4F5F6;
+  --sh:0 2px 3px rgba(17,24,39,.025),0 14px 34px -21px rgba(17,24,39,.17);
+  --pad:clamp(18px,3.4vw,44px);
+}
+body{
+  background:var(--page);
+  color:var(--body);
+  font-weight:500;
+  font-size:15px;
+  line-height:1.48;
+}
+.in,.lista,.sobre .box{max-width:1200px}
+h2,h3{color:var(--ink);letter-spacing:-.048em}
+button,a,select,input{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--laranja-forte);outline-offset:3px}
+
+/* Topo — presença de marca sem hero nem blocos decorativos */
+.head{
+  position:relative;
+  border:0;
+  background:#fff;
+  box-shadow:0 4px 18px rgba(17,24,39,.028);
+  isolation:isolate;
+}
+.head::after{
+  content:"";
+  position:absolute;
+  height:3px;
+  bottom:0;
+  left:0;
+  right:0;
+  background:var(--laranja);
+}
+.hb{min-height:95px;padding:18px 0;gap:20px}
+.head h1{
+  max-width:70%;
+  font-size:clamp(1.95rem,3.1vw,2.66rem);
+  line-height:1.05;
+  font-weight:800;
+  letter-spacing:-.063em;
+  color:var(--ink);
+}
+.logo img{height:clamp(43px,4.3vw,52px);width:auto}
+.rt{gap:20px}
+.cta{background:var(--ink);padding:12px 18px;font-size:13px}
+
+/* Busca — visual de ferramenta profissional, filtros segmentados */
+.busca{padding:clamp(22px,3vw,34px) 0 0}
+.painel{
+  gap:15px;
+  padding:17px;
+  border:1px solid #EAECED;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 4px 8px rgba(20,27,34,.02),0 20px 38px -24px rgba(16,25,35,.17);
+}
+.seg{
+  gap:0;
+  border:1px solid #E7EAEC;
+  border-radius:12px;
+  background:#E7EAEC;
+  overflow:hidden;
+}
+.cel{
+  padding:11px 16px 13px;
+  background:#fff;
+  min-height:67px;
+  transition:background .2s,box-shadow .2s;
+}
+.cel:hover{background:#FCFCFC}
+.cel:focus-within{background:#FFFBF5;box-shadow:inset 0 -3px 0 var(--laranja)}
+.cel label{
+  margin:0 0 3px;
+  color:#7D858D;
+  font-size:10px;
+  font-weight:800;
+  line-height:1.35;
+  letter-spacing:.085em;
+  text-transform:uppercase;
+}
+.cel input,.cel select{
+  height:26px;
+  font-size:14px;
+  font-weight:700;
+  color:#272B2F;
+  letter-spacing:-.012em;
+}
+.cel input::placeholder{font-weight:500;color:#9299A0}
+.cel--busca{padding-left:48px}
+.cel--busca svg{left:18px;top:calc(50% + 4px);color:var(--laranja-forte);stroke-width:2.2}
+.frow-b{
+  padding:13px 3px 0;
+  gap:12px 30px;
+  border-top:1px solid #F0F1F2;
+}
+.grp{gap:13px}
+.grp .lb{
+  font-size:12px;
+  font-weight:750;
+  color:#6D747A;
+}
+.dorm{gap:5px}
+.dorm button{
+  height:34px;
+  min-width:41px;
+  padding:0 12px;
+  border:1px solid #E4E7E9;
+  border-radius:9px;
+  font-size:12px;
+  color:#40464C;
+  transition:.2s ease;
+}
+.dorm button:hover{border-color:#777}
+.dorm button[aria-pressed="true"]{
+  background:var(--ink);
+  border-color:var(--ink);
+  color:#fff;
+  box-shadow:0 3px 7px rgba(0,0,0,.09);
+}
+.pillsel{
+  height:34px;
+  border-radius:9px;
+  border:1px solid #E4E7E9;
+  padding:0 36px 0 12px;
+  font-size:12px;
+  color:#40464C;
+  background-position:right 11px center;
+  background-color:#fff;
+}
+.limpar{
+  height:34px;
+  font-size:12px;
+  font-weight:750;
+  text-underline-offset:4px;
+  color:#51575D;
+}
+.limpar:hover{color:var(--laranja-forte)}
+.painel > .tags{
+  margin:0;
+  padding:1px 0 0;
+  gap:7px;
+}
+.tag-f{
+  height:30px;
+  border:1px solid #FFDFC0;
+  border-radius:8px;
+  background:#FFF7EE;
+  font-size:12px;
+  color:#8A4B00;
+}
+.mais{
+  height:40px;
+  background:#F7F8F9;
+  border:1px solid #E6E8E9;
+  border-radius:10px;
+  font-size:13px;
+}
+
+/* Resultados — organização e contraste editorial */
+.lista{padding-top:clamp(22px,2.5vw,28px);padding-bottom:clamp(58px,7vw,85px)}
+.barra{
+  min-height:43px;
+  margin-bottom:14px;
+  gap:12px;
+}
+.total{font-weight:600;font-size:13px;letter-spacing:.005em;color:#646C73}
+.total b{color:var(--ink);font-size:16px;font-weight:850;letter-spacing:-.03em}
+.ord{gap:12px}
+.ord label{color:#858B91;font-size:12px;font-weight:750}
+.ord .pillsel{
+  height:37px;
+  border-color:#E8EAEC;
+  background-color:#fff;
+  box-shadow:none;
+  padding-left:14px;
+  min-width:140px;
+}
+.cards{gap:16px}
+.emp,.emp.edge{
+  grid-template-columns:minmax(0,335px) minmax(0,1fr);
+  min-height:265px;
+  overflow:hidden;
+  border:1px solid #E9ECEE;
+  border-radius:19px;
+  background:#fff;
+  box-shadow:var(--sh);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;
+}
+.emp:hover{
+  transform:translateY(-2px);
+  border-color:#DEE2E5;
+  box-shadow:0 10px 20px rgba(17,24,39,.028),0 25px 45px -23px rgba(17,24,39,.23);
+}
+.emp .ph{min-height:265px;background:#D8DDDE}
+.emp .ph::after{
+  background:linear-gradient(180deg,transparent 64%,rgba(3,10,16,.55) 100%);
+}
+.emp .ph img{transition:transform .9s var(--ease)}
+.emp:hover .ph img{transform:scale(1.035)}
+.cnt{
+  left:16px;
+  bottom:16px;
+  height:29px;
+  padding:0 12px 0 9px;
+  background:rgba(14,20,26,.72);
+  border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+.ct{
+  padding:22px 23px 20px;
+  gap:13px;
+  min-width:0;
+}
+.st{
+  min-height:22px;
+  gap:9px 13px;
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.085em;
+  color:#6D747B;
+}
+.dot{
+  width:7px;
+  height:7px;
+  box-shadow:0 0 0 4px rgba(255,145,0,.13);
+}
+.st .mc{
+  padding:4px 10px 3px;
+  border:1px solid #FFE2BC;
+  border-radius:6px;
+  font-size:10px;
+  color:#8A4B00;
+  font-weight:800;
+  line-height:1.4;
+  letter-spacing:.035em;
+  text-transform:none;
+}
+.hd{align-items:center;margin:0;gap:10px 18px}
+.hd h2{
+  font-size:clamp(1.9rem,2.8vw,2.35rem);
+  font-weight:850;
+  color:var(--ink);
+  line-height:1.02;
+  letter-spacing:-.064em;
+}
+.loc{
+  gap:5px;
+  margin-top:7px;
+  font-size:13px;
+  color:#757C83;
+  font-weight:600;
+  line-height:1.3;
+}
+.loc svg{width:15px;height:15px;color:var(--laranja-forte);stroke-width:1.9}
+.ver{
+  flex:none;
+  height:39px;
+  padding:0 5px 0 15px;
+  gap:10px;
+  background:#1B1D20;
+  border-radius:11px;
+  font-size:12px;
+  letter-spacing:-.01em;
+  white-space:nowrap;
+}
+.ver:hover{background:#000}
+.ver .ar{
+  width:29px;
+  height:29px;
+  background:var(--laranja);
+  border-radius:8px;
+}
+.specs{
+  gap:8px 18px;
+  padding:10px 0 0;
+  border-top:1px solid #F0F1F2;
+}
+.specs li{
+  gap:6px;
+  font-size:12px;
+  font-weight:750;
+  line-height:1.35;
+  color:#35393D;
+  letter-spacing:-.01em;
+}
+.specs svg{height:16px;width:16px;color:#BD6B09;stroke-width:1.8}
+.mb{
+  margin-top:auto;
+  border:1px solid #E9EDEF;
+  border-radius:11px;
+  gap:1px;
+  background:#E9EDEF;
+  overflow:hidden;
+}
+.tl{
+  min-width:0;
+  min-height:60px;
+  gap:9px;
+  padding:10px 9px 10px 11px;
+  background:#FAFAFA;
+  align-items:center;
+  transition:background .18s ease;
+}
+.tl .ti{color:var(--laranja-forte)}
+.tl .ti svg{width:19px;height:19px;stroke-width:1.75}
+.tl .tn{
+  font-size:12px;
+  font-weight:800;
+  line-height:1.25;
+  letter-spacing:-.025em;
+}
+.tl .ta{
+  margin-top:5px;
+  gap:4px;
+  font-size:10px;
+  font-weight:700;
+  color:#868E95;
+}
+.tl .ta svg{vertical-align:-1px}
+a.tl:hover,button.tl:hover{background:#FFF1DF}
+a.tl:hover .ta,button.tl:hover .ta{color:#8A4B00}
+.tl.off{background:#FAFAFA}
+.emp.edge .ph{min-height:150px}
+.emp.edge .ct{justify-content:center}
+.emp.edge h2{font-size:clamp(1.9rem,2.8vw,2.35rem)}
+
+/* Rodapé institucional, discreto e consistente com a marca */
+.sobre{
+  position:relative;
+  background:#16181B;
+  padding:32px 0 26px;
+  border-radius:22px 22px 0 0;
+}
+.sobre::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:var(--pad);
+  width:58px;
+  height:3px;
+  background:var(--laranja);
+}
+.foot{gap:19px}
+.foot .r1{gap:18px 30px}
+.foot .logo img{height:43px}
+.foot .slogan{font-size:14px;font-weight:750;letter-spacing:-.02em;color:#fff}
+.foot small{
+  display:block;
+  padding-top:16px;
+  border-top:1px solid rgba(255,255,255,.11);
+  color:#A4A9AE;
+  font-size:11px;
+  line-height:1.7;
+}
+.foot .contato a{background:var(--laranja);border-radius:10px}
+
+/* Ficha: detalhes e galeria com leitura de apresentação */
+dialog.ficha{
+  width:min(1080px,calc(100% - 32px));
+  border-radius:22px;
+  box-shadow:0 24px 88px rgba(0,0,0,.26);
+}
+dialog.ficha::backdrop{background:rgba(11,17,23,.74);backdrop-filter:blur(5px)}
+.x{
+  width:42px;
+  height:42px;
+  margin:15px;
+  background:rgba(255,255,255,.97);
+  border:1px solid #E1E5E8;
+  border-radius:12px;
+  box-shadow:0 3px 14px rgba(0,0,0,.10);
+}
+.x:hover{background:#FFF1DF}
+.fgrid{
+  grid-template-columns:minmax(0,1.18fr) minmax(0,1fr);
+  gap:clamp(24px,3.2vw,39px);
+  padding:clamp(22px,3.5vw,38px);
+}
+.gal .main{border-radius:13px;background:var(--surface);aspect-ratio:4/3}
+.gal .nv,.gal .dl{
+  width:37px;
+  height:37px;
+  border:1px solid rgba(0,0,0,.04);
+  border-radius:10px;
+}
+.gal .pv{left:11px}
+.gal .nx{right:11px}
+.gal .gcnt{right:12px;bottom:12px;border-radius:7px;font-size:11px}
+.gal .dl{top:12px;right:12px}
+.gcap{border-radius:8px;font-size:11px;max-width:calc(100% - 112px)}
+.gcats{gap:6px;margin-bottom:12px}
+.gcats button{
+  height:31px;
+  gap:6px;
+  padding:0 10px;
+  border-radius:8px;
+  border:1px solid #E5E9EC;
+  font-size:11px;
+  color:#49525A;
+}
+.gcats button span{font-size:10px}
+.gcats button[aria-selected="true"]{background:#1D2125;border-color:#1D2125;color:#fff}
+.thumbs{gap:7px;grid-template-columns:repeat(auto-fill,minmax(69px,1fr))}
+.thumbs button{border-radius:7px}
+.dlall{height:40px;border-radius:9px;font-size:12px;margin-top:13px}
+.info .tags{gap:7px;margin:0 0 11px}
+.info .tags li{
+  background:#F4F5F6;
+  border-radius:7px;
+  font-size:11px;
+  color:#657079;
+  padding:5px 10px;
+}
+.info .tags li.o{background:var(--laranja-suave);color:#925000}
+.info h2{font-size:clamp(2.25rem,3.5vw,3.25rem);letter-spacing:-.06em;color:var(--ink)}
+.f-loc{margin-top:9px;font-size:15px;font-weight:750}
+.addr{margin-top:6px;font-size:13px;line-height:1.6}
+.addr a{color:#24282B}
+.ffacts{
+  gap:14px 16px;
+  margin-top:21px;
+  padding-top:20px;
+  border-top:1px solid #E8EBED;
+}
+.ffacts dt{font-size:11px;color:#899199;font-weight:700;letter-spacing:.025em}
+.ffacts dd{font-size:14px;font-weight:800;color:#1E2226;letter-spacing:-.025em}
+.mats{gap:8px;margin-top:22px}
+.mat{
+  gap:11px;
+  min-height:60px;
+  padding:9px 12px 9px 9px;
+  border-radius:10px;
+  background:#fff;
+  border:1px solid #E5E9EB;
+}
+.mat .mi{
+  width:39px;
+  height:39px;
+  border-radius:8px;
+  background:#FFF4E8;
+}
+.mat strong{font-size:13px;font-weight:800}
+.mat small{margin-top:3px;font-size:11px;color:#818991}
+.mat .ma{gap:3px;font-size:11px;white-space:nowrap}
+a.mat:hover,button.mat:hover{border-color:#F0B66D;background:#FFFBF6}
+.more{padding:3px clamp(22px,3.5vw,38px) clamp(30px,3.5vw,38px)}
+.tabs{gap:4px 24px;margin-bottom:18px}
+.tabs button{font-size:13px;padding:15px 0}
+.row{font-size:13px;padding:13px 0;color:#535A61}
+.row b{color:var(--ink)}
+.chips{gap:8px}
+.chips li{padding:9px 12px;border:1px solid #E9ECEE;background:#F7F8F9;border-radius:8px;font-size:12px}
+.list{color:#4D555D;font-size:13px;line-height:1.65}
+.list li::before{background:var(--laranja)}
+
+/* Responsivo refinado — sem rolagem horizontal, sem perda de conteúdo */
+@media (max-width:1050px){
+  .emp,.emp.edge{grid-template-columns:minmax(0,295px) minmax(0,1fr)}
+  .ct{padding:19px 20px 18px;gap:12px}
+  .specs{gap:7px 13px}
+  .hd h2{font-size:clamp(1.8rem,3.5vw,2.2rem)}
+  .tl{gap:6px;padding-inline:8px}
+  .tl .ti svg{width:17px;height:17px}
+  .tl .tn{font-size:11px}
+}
+@media (max-width:900px){
+  .seg{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:row}
+  .cel--busca{grid-column:1/-1}
+  .emp,.emp.edge{grid-template-columns:1fr;min-height:0}
+  .emp .ph{min-height:0;aspect-ratio:16/7}
+  .emp.edge .ph{aspect-ratio:auto;min-height:120px}
+  .ct{padding:22px;gap:16px}
+  .mb{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .fgrid{grid-template-columns:1fr}
+  dialog.ficha{width:100%;max-width:100%;height:100dvh;max-height:100dvh;border-radius:0}
+  .row{grid-template-columns:1fr 1fr}
+  .row em{grid-column:1/-1}
+}
+@media (max-width:700px){
+  .hb{min-height:80px}
+  .head h1{font-size:clamp(1.65rem,4.6vw,2.1rem)}
+  .logo img{height:42px}
+  .painel{padding:12px;gap:12px;border-radius:16px}
+  .frow-b{flex-direction:column;align-items:stretch;gap:13px;padding:12px 2px 1px}
+  .grp{justify-content:space-between}
+  .limpar{align-self:flex-start}
+  .mais{display:inline-flex}
+  #extra{display:none}
+  #extra.open{display:flex}
+  .ct{padding:19px;gap:14px}
+  .mb{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tl{padding:10px 13px;min-height:57px;gap:11px}
+  .tl .tn{font-size:12px}
+  .tl .ti svg{width:19px;height:19px}
+  .hd{align-items:flex-start}
+  .specs{gap:10px 17px}
+  .sobre{border-radius:18px 18px 0 0}
+}
+@media (max-width:560px){
+  .hb{min-height:75px;gap:8px}
+  .head h1{max-width:none;font-size:clamp(1.45rem,6.1vw,1.86rem)}
+  .logo img{height:clamp(30px,9vw,38px)}
+  .head .rt{gap:8px}
+  .busca{padding-top:18px}
+  .cel{padding:11px 13px;min-height:63px}
+  .cel--busca{padding-left:41px}
+  .cel--busca svg{left:14px}
+  .cel input,.cel select{font-size:13px}
+  .lista{padding-top:18px}
+  .barra{margin-bottom:10px}
+  .ord label{font-size:11px}
+  .ord .pillsel{min-width:119px;height:35px;padding-left:10px}
+  .emp,.emp.edge{border-radius:16px}
+  .emp .ph{aspect-ratio:16/9}
+  .hd{gap:12px}
+  .hd .ver{width:100%;justify-content:space-between}
+  .hd h2{font-size:2.02rem}
+  .loc{font-size:13px}
+  .specs{padding-top:11px}
+  .specs li{font-size:12px}
+  .cnt{bottom:12px;left:12px}
+  .foot .r1{align-items:flex-start}
+  .foot .slogan{font-size:13px}
+  .fgrid{padding:18px;gap:22px}
+  .more{padding:0 18px 28px}
+  .gcats button{font-size:10px;padding:0 8px}
+  .tabs{gap:4px 16px}
+  .tabs button{font-size:12px}
+}
+@media (max-width:360px){
+  .head h1{font-size:1.39rem}
+  .logo img{height:30px}
+  .hd h2{font-size:1.85rem}
+  .tl{padding:9px}
+  .tl .tn{font-size:11px}
+  .total{font-size:12px}
+  .ord{gap:5px}
+  .ord .pillsel{min-width:106px}
+}
+@media (prefers-reduced-motion:reduce){
+  .emp,.emp .ph img{transition:none!important}
+  .emp:hover{transform:none}
+}
+
+
+/* Condições comerciais — extensão discreta da ficha, sem alterar o layout dos cartões. */
+.comercial-atalho{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  width:100%;margin-top:12px;padding:12px 14px;
+  border:1px solid #F0D8B9;border-radius:10px;
+  background:#FFFAF3;color:#70420C;text-align:left;
+  font:inherit;font-size:12px;font-weight:800;
+  transition:background .2s,border-color .2s;
+}
+.comercial-atalho span{display:inline-flex;align-items:center;gap:8px}
+.comercial-atalho:hover{background:#FFF1DB;border-color:#E6B36D}
+.comercial-atalho:focus-visible{outline:2px solid var(--laranja-forte)}
+.condicoes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:2px 0 3px}
+.condicoes-grupo{min-width:0;background:#FAFAFA;border:1px solid #E9ECEE;border-radius:12px;padding:17px 19px}
+.condicoes-grupo h3{font-size:14px;line-height:1.25;font-weight:800;letter-spacing:-.025em;color:var(--ink);margin:0 0 12px}
+.condicoes-grupo ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.condicoes-grupo li{position:relative;padding-left:15px;font-size:13px;line-height:1.53;color:#4B5259}
+.condicoes-grupo li::before{content:"";position:absolute;left:0;top:.59em;width:5px;height:5px;border-radius:50%;background:var(--laranja-forte)}
+#tb-com{color:#805011}
+#tb-com[aria-selected="true"]{color:var(--ink)}
+@media (max-width:630px){
+  .condicoes{grid-template-columns:1fr;gap:9px}
+  .condicoes-grupo{padding:15px 16px}
+}
+
+
+/* Make.it: download integrado da tabela vigente do CV CRM */
+.cv-tabela-card,.cv-tabela-ficha{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px 13px;border-radius:10px;border:1px solid #f0d4ae;
+  background:#fffbf5;color:#2d2c29;text-decoration:none;
+  font-size:12px;font-weight:750;transition:background .18s,border-color .18s;
+}
+.cv-tabela-card{margin-top:1px}
+.cv-tabela-ficha{margin-top:10px;padding:13px 14px;font-size:13px}
+.cv-tabela-card:hover,.cv-tabela-ficha:hover{background:#fff2df;border-color:#f0a440}
+.cv-tabela-card .cv-label,.cv-tabela-ficha .cv-label{display:flex;align-items:center;gap:9px;min-width:0}
+.cv-tabela-card .cv-icon,.cv-tabela-ficha .cv-icon{display:grid;place-items:center;width:27px;height:27px;border-radius:7px;background:#ff9100;color:#191919;flex:none}
+.cv-tabela-ficha .cv-icon{width:34px;height:34px}
+.cv-tabela-card small,.cv-tabela-ficha small{display:block;color:#7b7670;font-size:10px;font-weight:600;margin-top:1px}
+.cv-tabela-ficha small{font-size:11px}
+.cv-tabela-card .cv-end,.cv-tabela-ficha .cv-end{white-space:nowrap;font-weight:800;color:#9b5700}
+@media(max-width:540px){.cv-tabela-card,.cv-tabela-ficha{padding:10px}.cv-tabela-card .cv-end{font-size:11px}}
+
+/* Ficha: ampliar imagem da galeria (visualizador em tela cheia) */
+.gal .zm{border:0;cursor:pointer;position:absolute;top:12px;right:57px;width:37px;height:37px;border-radius:10px;border:1px solid rgba(0,0,0,.04);background:rgba(255,255,255,.94);color:#000;display:grid;place-items:center;box-shadow:0 2px 12px rgba(0,0,0,.18);transition:background .15s}
+.gal .zm:hover{background:var(--laranja)}
+.gal .main #gImg{cursor:zoom-in}
+dialog.zoom{border:0;padding:0;margin:0;width:100%;max-width:100%;height:100%;max-height:100%;background:#0E1317;color:#fff;overflow:hidden}
+dialog.zoom::backdrop{background:#0E1317}
+dialog.zoom[open]{animation:zoomIn .18s ease-out}
+@keyframes zoomIn{from{opacity:0}to{opacity:1}}
+.zbar{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px clamp(12px,2vw,22px);background:linear-gradient(#0E1317 55%,rgba(14,19,23,0))}
+.zinfo{min-width:0;line-height:1.3}
+.zinfo strong{display:block;font-size:14px;font-weight:800;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zinfo span{display:block;margin-top:2px;font-size:12px;font-weight:600;color:#A4A9AE}
+.zacts{display:flex;gap:8px;flex:none}
+.zbt{width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .15s,color .15s}
+.zbt:hover{background:var(--laranja);color:#000;border-color:var(--laranja)}
+.zbt:focus-visible{outline:2px solid var(--laranja);outline-offset:2px}
+.zstage{position:absolute;inset:64px 0 0;display:flex;overflow:hidden;padding:8px clamp(56px,6vw,84px) 28px}
+.zstage img{flex:none;width:100%;height:100%;object-fit:contain;cursor:zoom-in;user-select:none;-webkit-user-drag:none}
+.zstage.on{overflow:auto;padding:8px;cursor:grab}
+.zstage.on.drag{cursor:grabbing}
+.zstage.on img{height:auto;max-width:none;max-height:none;margin:auto;object-fit:fill;cursor:zoom-out}
+.znav{position:absolute;top:50%;z-index:2;transform:translateY(-50%);width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(14,19,23,.72);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .15s,color .15s}
+.znav:hover{background:var(--laranja);color:#000}
+.znav.p{left:clamp(8px,1.5vw,20px)}.znav.n{right:clamp(8px,1.5vw,20px)}
+.zdica{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);font-size:11px;font-weight:600;color:#7F868C;white-space:nowrap;pointer-events:none}
+@media (max-width:700px){
+  .zstage{padding:8px 8px 34px}
+  .znav{top:auto;bottom:10px;transform:none;width:40px;height:40px}
+  .zdica{bottom:22px}
+  .zbt{width:38px;height:38px}
+}
+@media (prefers-reduced-motion:reduce){dialog.zoom[open]{animation:none}}
+
+/* Ficha: abas (Tipologias, Áreas comuns...) abaixo da galeria, na coluna da esquerda */
+.fgrid{grid-template-areas:"gal info" "more info";grid-template-rows:auto 1fr;align-items:start}
+.fgrid > .gal{grid-area:gal}
+.fgrid > .info{grid-area:info}
+.fgrid > .more{grid-area:more;padding:0;align-self:start;min-width:0}
+.fgrid{row-gap:22px}
+.fgrid > .more .tabs{gap:2px 14px;margin-bottom:10px}
+.fgrid > .more .tabs button{padding:12px 0;font-size:12.5px}
+.fgrid > .more .row{grid-template-columns:1fr 1fr;padding:11px 0}
+.fgrid > .more .row > :nth-child(3){grid-column:1 / -1}
+@media (max-width:900px){
+  .fgrid{grid-template-areas:none;grid-template-rows:none;row-gap:22px}
+  .fgrid > .gal,.fgrid > .info,.fgrid > .more{grid-area:auto}
+}
+/* Lista de materiais mais compacta */
+.mats{gap:6px}
+.mat{padding:9px 14px 9px 10px;gap:12px;border-radius:15px}
+.mat .mi{width:36px;height:36px;border-radius:11px}
+/* Indicador de que há mais conteúdo abaixo */
+.fmais{position:sticky;bottom:0;z-index:5;display:flex;justify-content:center;align-items:flex-end;height:76px;margin-top:-76px;pointer-events:none;background:linear-gradient(rgba(255,255,255,0),#fff 72%);transition:opacity .25s}
+.fmais.off{opacity:0;visibility:hidden}
+.fmais button{pointer-events:auto;display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;padding:9px 16px;border-radius:999px;border:0;cursor:pointer;background:var(--ink);color:#fff;font:inherit;font-size:12px;font-weight:800;box-shadow:0 8px 22px -10px rgba(0,0,0,.45)}
+.fmais button svg{transform:rotate(90deg)}
+.fmais button:hover{background:var(--laranja);color:#000}
+
+/* Ficha: Dormitórios, Metragem e Entrega sempre na mesma linha */
+.ffacts{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+/* Tour virtual: quinto material nos cartões */
+.mb{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:700px){
+  .mb{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mb > :last-child:nth-child(odd){grid-column:1/-1}
+}
+
+/* ================= Pop-up: condição comercial do mês ================= */
+dialog.promo{border:0;padding:0;margin:auto;width:min(720px,calc(100% - 24px));max-width:none;max-height:min(88dvh,760px);border-radius:24px;background:#121417;color:#fff;overflow:auto;overscroll-behavior:contain;box-shadow:0 30px 90px -20px rgba(0,0,0,.6)}
+dialog.promo[open]{animation:prEntra .35s var(--ease) both}
+dialog.promo::backdrop{background:rgba(10,12,14,.6);backdrop-filter:blur(4px)}
+.pr:focus{outline:none}
+.pr{position:relative;isolation:isolate;color:#fff;padding:22px}
+.pr::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(55% 60% at 100% 0%,rgba(255,145,0,.34),transparent 70%),
+  repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 2px,transparent 2px 16px)}
+.pr-x{position:absolute;top:14px;right:14px;z-index:2;width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .15s,color .15s}
+.pr-x:hover{background:var(--laranja);color:#000;border-color:var(--laranja)}
+.pr-x:focus-visible,.pr-cta:focus-visible,.pr-fab:focus-visible{outline:3px solid var(--laranja);outline-offset:3px}
+.pr-top{padding-right:46px;margin-bottom:16px}
+.pr-kick{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--laranja)}
+.pr-kick i{width:7px;height:7px;border-radius:50%;background:var(--laranja);animation:prPulse 1.6s infinite}
+.pr-tit{color:#fff;margin:6px 0 0;font-size:clamp(26px,4.4vw,34px);line-height:1;font-weight:900;letter-spacing:-.035em}
+.pr-tit em{font-style:normal;color:var(--laranja)}
+.pr-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pr-c{position:relative;border-radius:18px;padding:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:12px;animation:prSobe .45s var(--ease) both}
+.pr-c:nth-child(2){animation-delay:.08s}
+.pr-c.hot{background:linear-gradient(150deg,#FFA51F 0%,#FF9100 45%,#E86F00 100%);border-color:transparent;color:#151719;box-shadow:0 18px 44px -20px rgba(255,145,0,.8)}
+.pr-c.hot::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(110deg,transparent 38%,rgba(255,255,255,.2) 46%,transparent 54%);background-size:250% 100%;animation:prBrilho 3.4s 1s infinite}
+.pr-cab{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.pr-nome{color:inherit;margin:0;font-size:21px;line-height:1;font-weight:900;letter-spacing:-.03em}
+.pr-loc{margin:4px 0 0;font-size:11px;font-weight:700;opacity:.72}
+.pr-selo{flex:none;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px;background:#151719;color:var(--laranja)}
+.pr-c:not(.hot) .pr-selo{background:var(--laranja);color:#151719}
+.pr-bl{display:block;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin-bottom:2px}
+.pr-bonus strong{display:block;font-size:clamp(34px,5vw,42px);line-height:.95;font-weight:900;letter-spacing:-.045em}
+.pr-bonus strong sup{font-size:.4em;vertical-align:.85em;margin-right:3px;letter-spacing:0}
+.pr-c:not(.hot) .pr-bonus strong{color:var(--laranja)}
+.pr-bonus span{display:block;margin-top:4px;font-size:12px;line-height:1.3;font-weight:700}
+.pr-bonus span b{font-weight:900}
+.pr-esc{display:grid;grid-template-columns:repeat(4,1fr);align-items:end;gap:4px}
+.pr-deg{display:flex;flex-direction:column;justify-content:flex-end;border-radius:8px 8px 3px 3px;padding:6px 6px 5px;background:rgba(21,23,25,.12)}
+.pr-c:not(.hot) .pr-deg{background:rgba(255,255,255,.07)}
+.pr-deg b{font-size:15px;line-height:1;font-weight:900;letter-spacing:-.02em}
+.pr-deg small{font-size:10px;line-height:1.15;font-weight:700;opacity:.75;margin-top:2px}
+.pr-deg:nth-child(1){height:38px}.pr-deg:nth-child(2){height:46px}.pr-deg:nth-child(3){height:54px}.pr-deg:nth-child(4){height:64px}
+.pr-deg:last-child{background:#151719;color:#fff}
+.pr-deg:last-child b{color:var(--laranja)}
+.pr-c:not(.hot) .pr-deg:last-child{background:var(--laranja);color:#151719}
+.pr-c:not(.hot) .pr-deg:last-child b{color:#151719}
+.pr-escnota{margin:-4px 0 0;font-size:11px;line-height:1.35;font-weight:700;opacity:.78}
+.pr-pe{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+.pr-ant{flex:1 1 300px;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;font-size:12px;line-height:1.35;font-weight:700;background:rgba(255,145,0,.12);color:#FFD9A8}
+.pr-ant svg{flex:none;color:var(--laranja)}
+.pr-ant b{color:#fff}
+.pr-cta{flex:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:13px 18px;border-radius:12px;background:var(--laranja);color:#151719;font:inherit;font-size:14px;font-weight:900;transition:transform .15s,background .15s}
+.pr-cta:hover{background:#fff;transform:translateY(-1px)}
+.pr-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 14px;border-radius:999px;border:0;cursor:pointer;background:#151719;color:#fff;font:inherit;font-size:14px;font-weight:800;box-shadow:0 14px 34px -12px rgba(0,0,0,.45);transition:transform .15s}
+.pr-fab:hover{transform:translateY(-2px)}
+.pr-fab i{width:26px;height:26px;border-radius:50%;background:var(--laranja);color:#151719;display:grid;place-items:center;font-style:normal;font-size:14px}
+.pr-fab b{color:var(--laranja)}
+@keyframes prEntra{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes prPulse{0%{box-shadow:0 0 0 0 rgba(255,145,0,.7)}70%{box-shadow:0 0 0 8px rgba(255,145,0,0)}100%{box-shadow:0 0 0 0 rgba(255,145,0,0)}}
+@keyframes prSobe{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes prBrilho{0%{background-position:150% 0}60%,100%{background-position:-60% 0}}
+@media (max-width:640px){
+  .pr{padding:18px 16px}
+  .pr-grid{grid-template-columns:1fr}
+  .pr-cta{width:100%;justify-content:center}
+  .pr-fab span{display:none}
+  .pr-fab{padding:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  dialog.promo[open],.pr-c,.pr-c.hot::after,.pr-kick i{animation:none}
+}
+
+/* Tabela de preços: evita cliques repetidos enquanto o PDF é gerado */
+.cv-tabela-card[aria-busy="true"],.cv-tabela-ficha[aria-busy="true"]{opacity:.65;cursor:progress}
+
+</style>
+</head>
+<body>
+
+<header class="head" id="top">
+  <div class="in">
+    <div class="hb">
+      <h1 id="h1">Central de materiais.</h1>
+      <div class="rt">
+        <a href="#" class="cta" id="navCta" hidden>Falar com a Make.it</a>
+        <a class="logo" href="#inicio" aria-label="Make.it Construtora, início"><img src="data:image/png;base64,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" alt="make it."></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="busca" aria-label="Buscar empreendimentos">
+    <div class="in">
+      <div class="painel">
+        <div class="seg">
+          <div class="cel cel--busca">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <label for="fq">Buscar</label>
+            <input type="search" id="fq" placeholder="Nome, bairro ou cidade" autocomplete="off">
+          </div>
+          <div class="cel"><label for="fCidade">Cidade</label><select id="fCidade"></select></div>
+          <div class="cel"><label for="fBairro">Bairro</label><select id="fBairro"></select></div>
+          <div class="cel" id="celTipo"><label for="fTipo">Tipo</label><select id="fTipo"></select></div>
+          <div class="cel"><label for="fStatus">Estágio</label><select id="fStatus"></select></div>
+        </div>
+        <button type="button" class="mais" id="btMais" aria-expanded="false" aria-controls="extra">Mais filtros <span class="n" id="nExtra"></span></button>
+        <div class="frow-b" id="extra">
+          <div class="grp">
+            <span class="lb" id="lblDorm">Dormitórios</span>
+            <div class="dorm" role="group" aria-labelledby="lblDorm">
+              <button type="button" data-d="1" aria-pressed="false">1</button>
+              <button type="button" data-d="2" aria-pressed="false">2</button>
+              <button type="button" data-d="3" aria-pressed="false">3+</button>
+            </div>
+          </div>
+          <div class="grp">
+            <label class="lb" for="fArea">Área mínima</label>
+            <select id="fArea" class="pillsel">
+              <option value="0">Qualquer</option>
+              <option value="20">20 m² ou mais</option>
+              <option value="35">35 m² ou mais</option>
+              <option value="45">45 m² ou mais</option>
+              <option value="55">55 m² ou mais</option>
+              <option value="70">70 m² ou mais</option>
+            </select>
+          </div>
+          <button type="button" class="limpar" id="btLimpar">Limpar filtros</button>
+        </div>
+        <div class="tags" id="tags" aria-label="Filtros ativos"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lista" aria-label="Empreendimentos">
+    <div class="barra">
+      <div class="total" id="total" aria-live="polite"></div>
+      <div class="ord"><label for="fOrd">Ordenar</label>
+        <select id="fOrd" class="pillsel">
+          <option value="padrao">Padrão</option>
+          <option value="areaDesc">Maior área</option>
+          <option value="areaAsc">Menor área</option>
+          <option value="nome">Nome A–Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+</main>
+
+<section class="sobre" id="rodape" aria-label="Rodapé">
+  <div class="box">
+    <footer class="foot">
+      <div class="r1">
+        <a class="logo" href="#inicio" aria-label="Make.it Construtora, voltar ao topo"><img src="data:image/png;base64,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" alt="make it."></a>
+        <p class="slogan">Aqui sua vida acontece.</p>
+      </div>
+      <div class="contato" id="contato" hidden></div>
+      <small>Imagens meramente ilustrativas. Material destinado a imobiliárias e corretores parceiros. Informações sujeitas a alteração sem aviso prévio.<br><span id="ano"></span> Make.it®</small>
+    </footer>
+  </div>
+</section>
+
+<dialog class="ficha" id="ficha" aria-label="Ficha do empreendimento">
+  <div class="xw"><button type="button" class="x" id="fx" aria-label="Fechar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <div id="fbody"></div>
+</dialog>
+
+<dialog class="zoom" id="zoom" aria-label="Imagem ampliada">
+  <div class="zbar">
+    <div class="zinfo"><strong id="zTit"></strong><span id="zSub"></span></div>
+    <div class="zacts">
+      <button type="button" class="zbt" id="zTog" aria-label="Aproximar" title="Aproximar"></button>
+      <button type="button" class="zbt" data-dl aria-label="Baixar esta imagem em JPG" title="Baixar em JPG"></button>
+      <button type="button" class="zbt" id="zX" aria-label="Fechar imagem ampliada" title="Fechar (Esc)"></button>
+    </div>
+  </div>
+  <div class="zstage" id="zSt"><img id="zImg" alt=""></div>
+  <button type="button" class="znav p" id="zP" aria-label="Imagem anterior"></button>
+  <button type="button" class="znav n" id="zN" aria-label="Próxima imagem"></button>
+  <p class="zdica" id="zDica">Clique na imagem para aproximar</p>
+</dialog>
+
+<dialog class="promo" id="promo" aria-labelledby="prTit">
+  <div class="pr" tabindex="-1" autofocus>
+    <button type="button" class="pr-x" id="prX" aria-label="Fechar condições de outubro"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="pr-top">
+      <span class="pr-kick"><i></i>Condição comercial · Out.26</span>
+      <h2 class="pr-tit" id="prTit">É hora de <em>acelerar.</em> 🚀</h2>
+    </div>
+
+    <div class="pr-grid">
+      <article class="pr-c hot">
+        <div class="pr-cab">
+          <div><h3 class="pr-nome">Edge</h3><p class="pr-loc">São José dos Pinhais</p></div>
+          <span class="pr-selo">Maior bônus</span>
+        </div>
+        <div class="pr-bonus"><span class="pr-bl">Bateu, levou</span><strong><sup>R$</sup>1.500</strong><span>por venda, válido para as <b>vendas de outubro</b></span></div>
+        <div class="pr-esc" aria-label="Comissão escalonada do Edge">
+          <div class="pr-deg"><b>4%</b><small>Base</small></div>
+          <div class="pr-deg"><b>4,5%</b><small>7 vendas</small></div>
+          <div class="pr-deg"><b>5%</b><small>12 vendas</small></div>
+          <div class="pr-deg"><b>5,5%</b><small>20 vendas</small></div>
+        </div>
+        <p class="pr-escnota">Comissão escalonada para outubro e novembro</p>
+      </article>
+
+      <article class="pr-c">
+        <div class="pr-cab">
+          <div><h3 class="pr-nome">Horizon</h3><p class="pr-loc">Pinhais</p></div>
+          <span class="pr-selo">45 unidades</span>
+        </div>
+        <div class="pr-bonus"><span class="pr-bl">Bateu, levou</span><strong><sup>R$</sup>500</strong><span>por venda, válido para as <b>primeiras 45 unidades</b></span></div>
+        <div class="pr-esc" aria-label="Comissão escalonada do Horizon">
+          <div class="pr-deg"><b>4%</b><small>Base</small></div>
+          <div class="pr-deg"><b>4,3%</b><small>3 vendas</small></div>
+          <div class="pr-deg"><b>4,5%</b><small>7 vendas</small></div>
+          <div class="pr-deg"><b>5%</b><small>15 vendas</small></div>
+        </div>
+        <p class="pr-escnota">Vendas somadas de set, out e nov (não precisa ser no mesmo mês)</p>
+      </article>
+    </div>
+
+    <div class="pr-pe">
+      <div class="pr-ant"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg><span><b>Edge, Horizon e NOW:</b> a cada 3 vendas, 1 comissão liberada antes da assinatura Caixa</span></div>
+      <button type="button" class="pr-cta" id="prOk">Partiu vender <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</dialog>
+<button type="button" class="pr-fab" id="prFab" hidden aria-label="Ver condições comerciais de outubro"><i aria-hidden="true">🔥</i><span>Condições de <b>outubro</b></span></button>
+
+
+<script>
+/* ================================================================
+   IMAGENS: arquivos WebP na pasta img/ do repositório (alta resolução)
+   e miniaturas em img/<empreendimento>/t/. Chave = id usado em `imagens`.
+   ================================================================ */
+const IMG = {"edge-fachada-entardecer": "img/edge/edge-fachada-entardecer.webp", "edge-fachada-entardecer-t": "img/edge/t/edge-fachada-entardecer.webp", "edge-fachada-dia": "img/edge/edge-fachada-dia.webp", "edge-fachada-dia-t": "img/edge/t/edge-fachada-dia.webp", "edge-vista-isometrica": "img/edge/edge-vista-isometrica.webp", "edge-vista-isometrica-t": "img/edge/t/edge-vista-isometrica.webp", "edge-salao-de-festas": "img/edge/edge-salao-de-festas.webp", "edge-salao-de-festas-t": "img/edge/t/edge-salao-de-festas.webp", "edge-academia-coberta": "img/edge/edge-academia-coberta.webp", "edge-academia-coberta-t": "img/edge/t/edge-academia-coberta.webp", "edge-academia-externa": "img/edge/edge-academia-externa.webp", "edge-academia-externa-t": "img/edge/t/edge-academia-externa.webp", "edge-brinquedoteca": "img/edge/edge-brinquedoteca.webp", "edge-brinquedoteca-t": "img/edge/t/edge-brinquedoteca.webp", "edge-market": "img/edge/edge-market.webp", "edge-market-t": "img/edge/t/edge-market.webp", "edge-fire-place": "img/edge/edge-fire-place.webp", "edge-fire-place-t": "img/edge/t/edge-fire-place.webp", "edge-pet-place": "img/edge/edge-pet-place.webp", "edge-pet-place-t": "img/edge/t/edge-pet-place.webp", "edge-playground": "img/edge/edge-playground.webp", "edge-playground-t": "img/edge/t/edge-playground.webp", "edge-espaco-piquenique": "img/edge/edge-espaco-piquenique.webp", "edge-espaco-piquenique-t": "img/edge/t/edge-espaco-piquenique.webp", "edge-blocos-e-redario": "img/edge/edge-blocos-e-redario.webp", "edge-blocos-e-redario-t": "img/edge/t/edge-blocos-e-redario.webp", "edge-sala-de-estar-e-jantar": "img/edge/edge-sala-de-estar-e-jantar.webp", "edge-sala-de-estar-e-jantar-t": "img/edge/t/edge-sala-de-estar-e-jantar.webp", "edge-cozinha-integrada": "img/edge/edge-cozinha-integrada.webp", "edge-cozinha-integrada-t": "img/edge/t/edge-cozinha-integrada.webp", "edge-quarto-1": "img/edge/edge-quarto-1.webp", "edge-quarto-1-t": "img/edge/t/edge-quarto-1.webp", "edge-quarto-2": "img/edge/edge-quarto-2.webp", "edge-quarto-2-t": "img/edge/t/edge-quarto-2.webp", "edge-sacada-com-churrasqueira": "img/edge/edge-sacada-com-churrasqueira.webp", "edge-sacada-com-churrasqueira-t": "img/edge/t/edge-sacada-com-churrasqueira.webp", "edge-lavanderia": "img/edge/edge-lavanderia.webp", "edge-lavanderia-t": "img/edge/t/edge-lavanderia.webp", "edge-garden": "img/edge/edge-garden.webp", "edge-garden-t": "img/edge/t/edge-garden.webp", "edge-planta-tipo-ponta": "img/edge/edge-planta-tipo-ponta.webp", "edge-planta-tipo-ponta-t": "img/edge/t/edge-planta-tipo-ponta.webp", "edge-planta-tipo-meio": "img/edge/edge-planta-tipo-meio.webp", "edge-planta-tipo-meio-t": "img/edge/t/edge-planta-tipo-meio.webp", "edge-planta-garden-ponta": "img/edge/edge-planta-garden-ponta.webp", "edge-planta-garden-ponta-t": "img/edge/t/edge-planta-garden-ponta.webp", "edge-planta-garden-meio": "img/edge/edge-planta-garden-meio.webp", "edge-planta-garden-meio-t": "img/edge/t/edge-planta-garden-meio.webp", "edge-pavimento-8-unidades": "img/edge/edge-pavimento-8-unidades.webp", "edge-pavimento-8-unidades-t": "img/edge/t/edge-pavimento-8-unidades.webp", "edge-pavimento-12-unidades": "img/edge/edge-pavimento-12-unidades.webp", "edge-pavimento-12-unidades-t": "img/edge/t/edge-pavimento-12-unidades.webp", "edge-implantacao-coberta": "img/edge/edge-implantacao-coberta.webp", "edge-implantacao-coberta-t": "img/edge/t/edge-implantacao-coberta.webp", "edge-implantacao-cortada": "img/edge/edge-implantacao-cortada.webp", "edge-implantacao-cortada-t": "img/edge/t/edge-implantacao-cortada.webp", "ess-fachada-entardecer": "img/essence/ess-fachada-entardecer.webp", "ess-fachada-entardecer-t": "img/essence/t/ess-fachada-entardecer.webp", "ess-vista-dos-blocos": "img/essence/ess-vista-dos-blocos.webp", "ess-vista-dos-blocos-t": "img/essence/t/ess-vista-dos-blocos.webp", "ess-fachada-portaria": "img/essence/ess-fachada-portaria.webp", "ess-fachada-portaria-t": "img/essence/t/ess-fachada-portaria.webp", "ess-playground-infantil": "img/essence/ess-playground-infantil.webp", "ess-playground-infantil-t": "img/essence/t/ess-playground-infantil.webp", "ess-quadra-de-areia": "img/essence/ess-quadra-de-areia.webp", "ess-quadra-de-areia-t": "img/essence/t/ess-quadra-de-areia.webp", "ess-praca-de-jogos": "img/essence/ess-praca-de-jogos.webp", "ess-praca-de-jogos-t": "img/essence/t/ess-praca-de-jogos.webp", "ess-terraco-gourmet": "img/essence/ess-terraco-gourmet.webp", "ess-terraco-gourmet-t": "img/essence/t/ess-terraco-gourmet.webp", "ess-terraco-pizza": "img/essence/ess-terraco-pizza.webp", "ess-terraco-pizza-t": "img/essence/t/ess-terraco-pizza.webp", "ess-quiosque": "img/essence/ess-quiosque.webp", "ess-quiosque-t": "img/essence/t/ess-quiosque.webp", "ess-piscina": "img/essence/ess-piscina.webp", "ess-piscina-t": "img/essence/t/ess-piscina.webp", "ess-pet-place": "img/essence/ess-pet-place.webp", "ess-pet-place-t": "img/essence/t/ess-pet-place.webp", "ess-salao-de-festas": "img/essence/ess-salao-de-festas.webp", "ess-salao-de-festas-t": "img/essence/t/ess-salao-de-festas.webp", "ess-academia": "img/essence/ess-academia.webp", "ess-academia-t": "img/essence/t/ess-academia.webp", "ess-brinquedoteca": "img/essence/ess-brinquedoteca.webp", "ess-brinquedoteca-t": "img/essence/t/ess-brinquedoteca.webp", "ess-market": "img/essence/ess-market.webp", "ess-market-t": "img/essence/t/ess-market.webp", "ess-coworking": "img/essence/ess-coworking.webp", "ess-coworking-t": "img/essence/t/ess-coworking.webp", "ess-lavanderia-omo": "img/essence/ess-lavanderia-omo.webp", "ess-lavanderia-omo-t": "img/essence/t/ess-lavanderia-omo.webp", "ess-pet-care": "img/essence/ess-pet-care.webp", "ess-pet-care-t": "img/essence/t/ess-pet-care.webp", "ess-vista-aerea": "img/essence/ess-vista-aerea.webp", "ess-vista-aerea-t": "img/essence/t/ess-vista-aerea.webp", "ess-living-1q": "img/essence/ess-living-1q.webp", "ess-living-1q-t": "img/essence/t/ess-living-1q.webp", "ess-suite-1q": "img/essence/ess-suite-1q.webp", "ess-suite-1q-t": "img/essence/t/ess-suite-1q.webp", "ess-living-2q": "img/essence/ess-living-2q.webp", "ess-living-2q-t": "img/essence/t/ess-living-2q.webp", "ess-living-3q": "img/essence/ess-living-3q.webp", "ess-living-3q-t": "img/essence/t/ess-living-3q.webp", "ess-suite-3q": "img/essence/ess-suite-3q.webp", "ess-suite-3q-t": "img/essence/t/ess-suite-3q.webp", "ess-quarto-2-3q": "img/essence/ess-quarto-2-3q.webp", "ess-quarto-2-3q-t": "img/essence/t/ess-quarto-2-3q.webp", "ess-suite-2-3q": "img/essence/ess-suite-2-3q.webp", "ess-suite-2-3q-t": "img/essence/t/ess-suite-2-3q.webp", "ess-living-duplex-1": "img/essence/ess-living-duplex-1.webp", "ess-living-duplex-1-t": "img/essence/t/ess-living-duplex-1.webp", "ess-terraco-duplex-1": "img/essence/ess-terraco-duplex-1.webp", "ess-terraco-duplex-1-t": "img/essence/t/ess-terraco-duplex-1.webp", "ess-living-duplex-2": "img/essence/ess-living-duplex-2.webp", "ess-living-duplex-2-t": "img/essence/t/ess-living-duplex-2.webp", "ess-terraco-duplex-2": "img/essence/ess-terraco-duplex-2.webp", "ess-terraco-duplex-2-t": "img/essence/t/ess-terraco-duplex-2.webp", "ess-garden": "img/essence/ess-garden.webp", "ess-garden-t": "img/essence/t/ess-garden.webp", "ess-planta-1q": "img/essence/ess-planta-1q.webp", "ess-planta-1q-t": "img/essence/t/ess-planta-1q.webp", "ess-planta-1q-garden": "img/essence/ess-planta-1q-garden.webp", "ess-planta-1q-garden-t": "img/essence/t/ess-planta-1q-garden.webp", "ess-planta-2q-1": "img/essence/ess-planta-2q-1.webp", "ess-planta-2q-1-t": "img/essence/t/ess-planta-2q-1.webp", "ess-planta-2q-1-garden": "img/essence/ess-planta-2q-1-garden.webp", "ess-planta-2q-1-garden-t": "img/essence/t/ess-planta-2q-1-garden.webp", "ess-planta-2q-2": "img/essence/ess-planta-2q-2.webp", "ess-planta-2q-2-t": "img/essence/t/ess-planta-2q-2.webp", "ess-planta-2q-2-garden": "img/essence/ess-planta-2q-2-garden.webp", "ess-planta-2q-2-garden-t": "img/essence/t/ess-planta-2q-2-garden.webp", "ess-planta-2q-3": "img/essence/ess-planta-2q-3.webp", "ess-planta-2q-3-t": "img/essence/t/ess-planta-2q-3.webp", "ess-planta-2q-3-garden": "img/essence/ess-planta-2q-3-garden.webp", "ess-planta-2q-3-garden-t": "img/essence/t/ess-planta-2q-3-garden.webp", "ess-planta-2q-4": "img/essence/ess-planta-2q-4.webp", "ess-planta-2q-4-t": "img/essence/t/ess-planta-2q-4.webp", "ess-planta-2q-4-garden": "img/essence/ess-planta-2q-4-garden.webp", "ess-planta-2q-4-garden-t": "img/essence/t/ess-planta-2q-4-garden.webp", "ess-planta-3q-1": "img/essence/ess-planta-3q-1.webp", "ess-planta-3q-1-t": "img/essence/t/ess-planta-3q-1.webp", "ess-planta-3q-1-garden": "img/essence/ess-planta-3q-1-garden.webp", "ess-planta-3q-1-garden-t": "img/essence/t/ess-planta-3q-1-garden.webp", "ess-planta-3q-2": "img/essence/ess-planta-3q-2.webp", "ess-planta-3q-2-t": "img/essence/t/ess-planta-3q-2.webp", "ess-duplex-1-inferior": "img/essence/ess-duplex-1-inferior.webp", "ess-duplex-1-inferior-t": "img/essence/t/ess-duplex-1-inferior.webp", "ess-duplex-1-superior": "img/essence/ess-duplex-1-superior.webp", "ess-duplex-1-superior-t": "img/essence/t/ess-duplex-1-superior.webp", "ess-duplex-2-inferior": "img/essence/ess-duplex-2-inferior.webp", "ess-duplex-2-inferior-t": "img/essence/t/ess-duplex-2-inferior.webp", "ess-duplex-2-superior": "img/essence/ess-duplex-2-superior.webp", "ess-duplex-2-superior-t": "img/essence/t/ess-duplex-2-superior.webp", "ess-duplex-3-inferior": "img/essence/ess-duplex-3-inferior.webp", "ess-duplex-3-inferior-t": "img/essence/t/ess-duplex-3-inferior.webp", "ess-duplex-3-superior": "img/essence/ess-duplex-3-superior.webp", "ess-duplex-3-superior-t": "img/essence/t/ess-duplex-3-superior.webp", "ess-duplex-4-inferior": "img/essence/ess-duplex-4-inferior.webp", "ess-duplex-4-inferior-t": "img/essence/t/ess-duplex-4-inferior.webp", "ess-duplex-4-superior": "img/essence/ess-duplex-4-superior.webp", "ess-duplex-4-superior-t": "img/essence/t/ess-duplex-4-superior.webp", "ess-duplex-5-inferior": "img/essence/ess-duplex-5-inferior.webp", "ess-duplex-5-inferior-t": "img/essence/t/ess-duplex-5-inferior.webp", "ess-pav-bloco-1": "img/essence/ess-pav-bloco-1.webp", "ess-pav-bloco-1-t": "img/essence/t/ess-pav-bloco-1.webp", "ess-pav-bloco-1-garden": "img/essence/ess-pav-bloco-1-garden.webp", "ess-pav-bloco-1-garden-t": "img/essence/t/ess-pav-bloco-1-garden.webp", "ess-pav-bloco-2": "img/essence/ess-pav-bloco-2.webp", "ess-pav-bloco-2-t": "img/essence/t/ess-pav-bloco-2.webp", "ess-pav-bloco-2-garden": "img/essence/ess-pav-bloco-2-garden.webp", "ess-pav-bloco-2-garden-t": "img/essence/t/ess-pav-bloco-2-garden.webp", "ess-pav-bloco-3": "img/essence/ess-pav-bloco-3.webp", "ess-pav-bloco-3-t": "img/essence/t/ess-pav-bloco-3.webp", "ess-pav-bloco-3-garden": "img/essence/ess-pav-bloco-3-garden.webp", "ess-pav-bloco-3-garden-t": "img/essence/t/ess-pav-bloco-3-garden.webp", "ess-pav-duplex-bloco-1-inferior": "img/essence/ess-pav-duplex-bloco-1-inferior.webp", "ess-pav-duplex-bloco-1-inferior-t": "img/essence/t/ess-pav-duplex-bloco-1-inferior.webp", "ess-pav-duplex-bloco-1-superior": "img/essence/ess-pav-duplex-bloco-1-superior.webp", "ess-pav-duplex-bloco-1-superior-t": "img/essence/t/ess-pav-duplex-bloco-1-superior.webp", "ess-pav-duplex-bloco-2-inferior": "img/essence/ess-pav-duplex-bloco-2-inferior.webp", "ess-pav-duplex-bloco-2-inferior-t": "img/essence/t/ess-pav-duplex-bloco-2-inferior.webp", "ess-pav-duplex-bloco-2-superior": "img/essence/ess-pav-duplex-bloco-2-superior.webp", "ess-pav-duplex-bloco-2-superior-t": "img/essence/t/ess-pav-duplex-bloco-2-superior.webp", "ess-pav-duplex-bloco-3-inferior": "img/essence/ess-pav-duplex-bloco-3-inferior.webp", "ess-pav-duplex-bloco-3-inferior-t": "img/essence/t/ess-pav-duplex-bloco-3-inferior.webp", "ess-pav-duplex-bloco-3-superior": "img/essence/ess-pav-duplex-bloco-3-superior.webp", "ess-pav-duplex-bloco-3-superior-t": "img/essence/t/ess-pav-duplex-bloco-3-superior.webp", "ess-implantacao": "img/essence/ess-implantacao.webp", "ess-implantacao-t": "img/essence/t/ess-implantacao.webp", "ess-implantacao-cortada": "img/essence/ess-implantacao-cortada.webp", "ess-implantacao-cortada-t": "img/essence/t/ess-implantacao-cortada.webp", "ess-implantacao-identificada": "img/essence/ess-implantacao-identificada.webp", "ess-implantacao-identificada-t": "img/essence/t/ess-implantacao-identificada.webp", "ess-areas-comuns-piso-inferior": "img/essence/ess-areas-comuns-piso-inferior.webp", "ess-areas-comuns-piso-inferior-t": "img/essence/t/ess-areas-comuns-piso-inferior.webp", "hor-fachada-dia": "img/horizon/hor-fachada-dia.webp", "hor-fachada-dia-t": "img/horizon/t/hor-fachada-dia.webp", "hor-fachada-entardecer": "img/horizon/hor-fachada-entardecer.webp", "hor-fachada-entardecer-t": "img/horizon/t/hor-fachada-entardecer.webp", "hor-torres-e-estacionamento": "img/horizon/hor-torres-e-estacionamento.webp", "hor-torres-e-estacionamento-t": "img/horizon/t/hor-torres-e-estacionamento.webp", "hor-vista-aerea": "img/horizon/hor-vista-aerea.webp", "hor-vista-aerea-t": "img/horizon/t/hor-vista-aerea.webp", "hor-terraco-gourmet": "img/horizon/hor-terraco-gourmet.webp", "hor-terraco-gourmet-t": "img/horizon/t/hor-terraco-gourmet.webp", "hor-salao-de-festas": "img/horizon/hor-salao-de-festas.webp", "hor-salao-de-festas-t": "img/horizon/t/hor-salao-de-festas.webp", "hor-academia": "img/horizon/hor-academia.webp", "hor-academia-t": "img/horizon/t/hor-academia.webp", "hor-playground": "img/horizon/hor-playground.webp", "hor-playground-t": "img/horizon/t/hor-playground.webp", "hor-redario": "img/horizon/hor-redario.webp", "hor-redario-t": "img/horizon/t/hor-redario.webp", "hor-espaco-piquenique": "img/horizon/hor-espaco-piquenique.webp", "hor-espaco-piquenique-t": "img/horizon/t/hor-espaco-piquenique.webp", "hor-sala": "img/horizon/hor-sala.webp", "hor-sala-t": "img/horizon/t/hor-sala.webp", "hor-cozinha": "img/horizon/hor-cozinha.webp", "hor-cozinha-t": "img/horizon/t/hor-cozinha.webp", "hor-quarto-casal": "img/horizon/hor-quarto-casal.webp", "hor-quarto-casal-t": "img/horizon/t/hor-quarto-casal.webp", "hor-quarto-infantil": "img/horizon/hor-quarto-infantil.webp", "hor-quarto-infantil-t": "img/horizon/t/hor-quarto-infantil.webp", "hor-sacada": "img/horizon/hor-sacada.webp", "hor-sacada-t": "img/horizon/t/hor-sacada.webp", "hor-lavanderia": "img/horizon/hor-lavanderia.webp", "hor-lavanderia-t": "img/horizon/t/hor-lavanderia.webp", "hor-garden": "img/horizon/hor-garden.webp", "hor-garden-t": "img/horizon/t/hor-garden.webp", "hor-planta-2q-1": "img/horizon/hor-planta-2q-1.webp", "hor-planta-2q-1-t": "img/horizon/t/hor-planta-2q-1.webp", "hor-planta-2q-2": "img/horizon/hor-planta-2q-2.webp", "hor-planta-2q-2-t": "img/horizon/t/hor-planta-2q-2.webp", "hor-implantacao-geral": "img/horizon/hor-implantacao-geral.webp", "hor-implantacao-geral-t": "img/horizon/t/hor-implantacao-geral.webp", "hor-implantacao-cortada": "img/horizon/hor-implantacao-cortada.webp", "hor-implantacao-cortada-t": "img/horizon/t/hor-implantacao-cortada.webp", "hor-vista-isometrica": "img/horizon/hor-vista-isometrica.webp", "hor-vista-isometrica-t": "img/horizon/t/hor-vista-isometrica.webp", "hor-implantacao-coberta-identificada": "img/horizon/hor-implantacao-coberta-identificada.webp", "hor-implantacao-coberta-identificada-t": "img/horizon/t/hor-implantacao-coberta-identificada.webp", "hor-implantacao-cortada-identificada": "img/horizon/hor-implantacao-cortada-identificada.webp", "hor-implantacao-cortada-identificada-t": "img/horizon/t/hor-implantacao-cortada-identificada.webp", "now-fachada": "img/now/now-fachada.webp", "now-fachada-t": "img/now/t/now-fachada.webp", "now-horta-pomar-redario": "img/now/now-horta-pomar-redario.webp", "now-horta-pomar-redario-t": "img/now/t/now-horta-pomar-redario.webp", "now-praca-de-jogos": "img/now/now-praca-de-jogos.webp", "now-praca-de-jogos-t": "img/now/t/now-praca-de-jogos.webp", "now-playground": "img/now/now-playground.webp", "now-playground-t": "img/now/t/now-playground.webp", "now-pet-place": "img/now/now-pet-place.webp", "now-pet-place-t": "img/now/t/now-pet-place.webp", "now-salao-de-festas": "img/now/now-salao-de-festas.webp", "now-salao-de-festas-t": "img/now/t/now-salao-de-festas.webp", "now-salao-de-jogos": "img/now/now-salao-de-jogos.webp", "now-salao-de-jogos-t": "img/now/t/now-salao-de-jogos.webp", "now-sala-e-cozinha": "img/now/now-sala-e-cozinha.webp", "now-sala-e-cozinha-t": "img/now/t/now-sala-e-cozinha.webp", "now-sala-de-estar-e-jantar": "img/now/now-sala-de-estar-e-jantar.webp", "now-sala-de-estar-e-jantar-t": "img/now/t/now-sala-de-estar-e-jantar.webp", "now-quarto-1": "img/now/now-quarto-1.webp", "now-quarto-1-t": "img/now/t/now-quarto-1.webp", "now-quarto-2": "img/now/now-quarto-2.webp", "now-quarto-2-t": "img/now/t/now-quarto-2.webp", "now-lavanderia": "img/now/now-lavanderia.webp", "now-lavanderia-t": "img/now/t/now-lavanderia.webp", "now-sacada": "img/now/now-sacada.webp", "now-sacada-t": "img/now/t/now-sacada.webp", "now-garden": "img/now/now-garden.webp", "now-garden-t": "img/now/t/now-garden.webp", "now-planta-tipo": "img/now/now-planta-tipo.webp", "now-planta-tipo-t": "img/now/t/now-planta-tipo.webp", "now-pavimento-garden": "img/now/now-pavimento-garden.webp", "now-pavimento-garden-t": "img/now/t/now-pavimento-garden.webp", "now-implantacao": "img/now/now-implantacao.webp", "now-implantacao-t": "img/now/t/now-implantacao.webp", "now-implantacao-cortada": "img/now/now-implantacao-cortada.webp", "now-implantacao-cortada-t": "img/now/t/now-implantacao-cortada.webp"};
+
+/* ================================================================
+   CONTATO. Preencha para ativar os botões de contato.
+   Vazio = nenhum botão de contato aparece.
+   ================================================================ */
+/* ================================================================
+   TABELA DE PREÇOS (Cloudflare Worker → CV CRM).
+   Endereço público do Worker. Nenhuma credencial fica neste arquivo.
+   ================================================================ */
+const CV_WORKER_URL = "https://square-rain-8b3fmakeit-tabelas-cv.amandalnaa.workers.dev";
+const tabelaUrl = slug => `${CV_WORKER_URL}/pdf/${encodeURIComponent(slug)}`;
+
+const CONTATO = {
+  whatsapp: "",   // só números com DDI, ex.: "5541999999999"
+  telefone: "",   // texto exibido, ex.: "(41) 99999-9999"
+  email: ""
+};
+
+/* ================================================================
+   EMPREENDIMENTOS. A ordem do array é a ordem na página.
+   materiais.*: link do arquivo. Vazio = aparece como "Em breve."
+   imagensLink: pasta/zip para baixar as imagens (vazio = abre a galeria do site)
+   foco: ponto de enquadramento da foto (CSS object-position)
+   tipologias[].dorms (0 = Studio) e areaNum/areaAte (m²) alimentam os filtros de dormitórios e área.
+   cidade, bairro, tipo e status alimentam os filtros automaticamente.
+   ================================================================ */
+const IM = (pref, nome, cat, slug, titulo, fit) => ({ cat, titulo, alt: `${titulo}, ${nome}`, id: `${pref}-${slug}`, th: `${pref}-${slug}-t`, ext: "webp", ...(fit ? { fit } : {}) });
+
+const EMPS = [
+  {
+    slug:"edge", nome:"Edge", status:"Lançamento", tipo:"Apartamento",
+    cidade:"São José dos Pinhais", bairro:"Boneca do Iguaçu",
+    endereco:"Rua Porto Rico, 198", coords:"",
+    entrega:"28/10/2029",
+    dormitorios:"2 dormitórios", area:"43,80 a 44,28 m²", tipos:"Opções com Garden",
+    materiais:{
+      book:"docs/book-edge.pdf",
+      simulador:"https://makeit-construtora.github.io/fluxo-edge/",
+      tour:"https://tour.ultratour.com.br/makeit/edge/index.html",
+      memorial:"docs/memorial-edge.pdf",
+      imagensLink:""
+    },
+    zip:true,
+    foco:{ aberto:"50% 50%", fechado:"50% 50%" },
+    imagens:[
+      IM("edge","Edge","Fachadas","fachada-entardecer","Fachada ao entardecer"),
+      IM("edge","Edge","Fachadas","fachada-dia","Fachada durante o dia","contain"),
+      IM("edge","Edge","Fachadas","vista-isometrica","Vista isométrica do condomínio","contain"),
+      IM("edge","Edge","Áreas comuns","salao-de-festas","Salão de festas"),
+      IM("edge","Edge","Áreas comuns","academia-coberta","Academia coberta"),
+      IM("edge","Edge","Áreas comuns","academia-externa","Academia externa"),
+      IM("edge","Edge","Áreas comuns","brinquedoteca","Brinquedoteca"),
+      IM("edge","Edge","Áreas comuns","market","Market"),
+      IM("edge","Edge","Áreas comuns","fire-place","Fire Place"),
+      IM("edge","Edge","Áreas comuns","pet-place","Pet Place"),
+      IM("edge","Edge","Áreas comuns","playground","Playground e quiosque"),
+      IM("edge","Edge","Áreas comuns","espaco-piquenique","Espaço piquenique"),
+      IM("edge","Edge","Áreas comuns","blocos-e-redario","Blocos e redário"),
+      IM("edge","Edge","Áreas privativas","sala-de-estar-e-jantar","Sala de estar e jantar"),
+      IM("edge","Edge","Áreas privativas","cozinha-integrada","Cozinha integrada"),
+      IM("edge","Edge","Áreas privativas","quarto-1","Quarto 1"),
+      IM("edge","Edge","Áreas privativas","quarto-2","Quarto 2"),
+      IM("edge","Edge","Áreas privativas","sacada-com-churrasqueira","Sacada com churrasqueira"),
+      IM("edge","Edge","Áreas privativas","lavanderia","Lavanderia"),
+      IM("edge","Edge","Áreas privativas","garden","Apartamento Garden"),
+      IM("edge","Edge","Plantas","planta-tipo-ponta","Planta tipo, ponta","contain"),
+      IM("edge","Edge","Plantas","planta-tipo-meio","Planta tipo, meio","contain"),
+      IM("edge","Edge","Plantas","planta-garden-ponta","Planta garden, ponta","contain"),
+      IM("edge","Edge","Plantas","planta-garden-meio","Planta garden, meio","contain"),
+      IM("edge","Edge","Plantas","pavimento-8-unidades","Pavimento tipo, bloco de 8 apartamentos por andar","contain"),
+      IM("edge","Edge","Plantas","pavimento-12-unidades","Pavimento tipo, bloco de 12 apartamentos por andar","contain"),
+      IM("edge","Edge","Plantas","implantacao-coberta","Implantação coberta","contain"),
+      IM("edge","Edge","Plantas","implantacao-cortada","Implantação cortada","contain")
+    ],
+    tipologias:[
+      { nome:"Apto 2Q, ponta", area:"43,80 a 44,28 m²", areaNum:43.80, areaAte:44.28, dorms:2, extra:"Opção Garden: + 12,38 a 22,73 m² de área descoberta" },
+      { nome:"Apto 2Q, meio",  area:"43,80 a 44,28 m²", areaNum:43.80, areaAte:44.28, dorms:2, extra:"Opção Garden: + 12,35 a 19,20 m² de área descoberta" }
+    ],
+    areasComuns:["Salão de Festas","Academia Coberta","Academia Externa","Brinquedoteca","Mini Campo de Futebol","Quiosque Duplo com Churrasqueira","Fire Place","Pet Place","Redário","Espaço Piquenique","Playground","Praça de Jogos","Mesa de Ping Pong","Horta & Pomar","Bicicletário","Guarita","Market (espaço previsto)","Delivery (espaço previsto)"],
+    diferenciais:[
+      "8 blocos de 6 pavimentos em alvenaria estrutural, com 432 apartamentos e 1 elevador por bloco",
+      "60 apartamentos Garden, no térreo dos 8 blocos",
+      "455 vagas, entre edifício garagem e áreas descobertas: 190 cobertas e 265 descobertas, com 13 para apartamentos adaptáveis e 21 para visitantes",
+      "Sacada com churrasqueira a carvão",
+      "Infraestrutura seca para ar-condicionado split nos dormitórios",
+      "Infraestrutura para aquecimento de água a gás nas torneiras da cozinha e do banheiro",
+      "Porcelanato na cozinha, no banheiro, na área de serviço e na sacada",
+      "Bacia com caixa acoplada de acionamento duplo e forro de gesso no banheiro (exceto no último pavimento)",
+      "Fachada em textura acrílica com pastilha cerâmica e esquadrias de alumínio preto",
+      "Sensores de presença em todas as circulações internas e ponto elétrico para depurador"
+    ],
+    proximidades:["Portal de São José dos Pinhais","Parque Municipal São José dos Pinhais","Avenida das Torres","BR-277 e BR-376","Centro de São José dos Pinhais","Aeroporto Afonso Pena","Supermercados, escolas, farmácias, academias e restaurantes no entorno"]
+  },
+  {
+    slug:"horizon", nome:"Horizon", status:"Lançamento", tipo:"Apartamento",
+    cidade:"Pinhais", bairro:"Jardim Amélia",
+    endereco:"Rua Aristídes Evangelista, 546", coords:"",
+    entrega:"30/05/2029",
+    dormitorios:"2 dormitórios", area:"44,21 a 44,36 m²", tipos:"Opções com Garden",
+    materiais:{
+      book:"docs/book-horizon.pdf",
+      simulador:"https://makeit-construtora.github.io/fluxo-horizon/",
+      tour:"",
+      memorial:"docs/memorial-horizon.pdf",
+      imagensLink:""
+    },
+    zip:true,
+    foco:{ aberto:"60% 50%", fechado:"96% 50%" },
+    imagens:[
+      IM("hor","Horizon","Fachadas","fachada-dia","Fachada com portaria, durante o dia"),
+      IM("hor","Horizon","Fachadas","fachada-entardecer","Fachada com portaria, ao entardecer"),
+      IM("hor","Horizon","Fachadas","torres-e-estacionamento","Torres e estacionamento"),
+      IM("hor","Horizon","Fachadas","vista-aerea","Vista aérea da região"),
+      IM("hor","Horizon","Áreas comuns","terraco-gourmet","Terraço gourmet e Fire Place"),
+      IM("hor","Horizon","Áreas comuns","salao-de-festas","Salão de festas"),
+      IM("hor","Horizon","Áreas comuns","academia","Academia"),
+      IM("hor","Horizon","Áreas comuns","playground","Playground"),
+      IM("hor","Horizon","Áreas comuns","redario","Redário"),
+      IM("hor","Horizon","Áreas comuns","espaco-piquenique","Espaço piquenique"),
+      IM("hor","Horizon","Áreas privativas","sala","Sala de estar e jantar"),
+      IM("hor","Horizon","Áreas privativas","cozinha","Cozinha"),
+      IM("hor","Horizon","Áreas privativas","quarto-casal","Quarto de casal"),
+      IM("hor","Horizon","Áreas privativas","quarto-infantil","Quarto infantil"),
+      IM("hor","Horizon","Áreas privativas","sacada","Sacada com churrasqueira"),
+      IM("hor","Horizon","Áreas privativas","lavanderia","Lavanderia"),
+      IM("hor","Horizon","Áreas privativas","garden","Apartamento Garden"),
+      IM("hor","Horizon","Plantas","planta-2q-1","Planta tipo, meio","contain"),
+      IM("hor","Horizon","Plantas","planta-2q-2","Planta tipo, ponta","contain"),
+      IM("hor","Horizon","Plantas","implantacao-geral","Implantação geral","contain"),
+      IM("hor","Horizon","Plantas","implantacao-cortada","Implantação cortada","contain"),
+      IM("hor","Horizon","Plantas","vista-isometrica","Vista isométrica do condomínio","contain"),
+      IM("hor","Horizon","Plantas","implantacao-coberta-identificada","Implantação coberta, com identificação das áreas","contain"),
+      IM("hor","Horizon","Plantas","implantacao-cortada-identificada","Implantação cortada, com identificação das áreas","contain")
+    ],
+    tipologias:[
+      { nome:"Apto 2Q, ponta", area:"44,21 a 44,36 m²", areaNum:44.21, areaAte:44.36, dorms:2, extra:"Opção Garden: a partir de 17,39 m² de área descoberta" },
+      { nome:"Apto 2Q, meio",  area:"44,21 a 44,36 m²", areaNum:44.21, areaAte:44.36, dorms:2, extra:"Opção Garden: a partir de 24,14 m² de área descoberta" }
+    ],
+    areasComuns:["Terraço Gourmet com Churrasqueira","Salão de Festas","Academia","Bicicletário","Fire Place","Pet Place","Redário","Espaço Piquenique","Solarium Descoberto","Playground","Área de Jogos","Horta & Pomar","Delivery","Guarita"],
+    diferenciais:[
+      "2 blocos de 8 pavimentos, com elevador, e 144 apartamentos: 10 por andar no bloco 1 (80 unidades) e 8 no bloco 2 (64 unidades)",
+      "4 apartamentos Garden, no térreo",
+      "1 vaga descoberta por apartamento, mais 5 vagas para visitantes",
+      "Sacada com churrasqueira a carvão",
+      "Porcelanato na cozinha, no banheiro, na área de serviço e na sacada",
+      "Infraestrutura para aquecimento a gás na pia e no chuveiro",
+      "Infraestrutura seca para ar-condicionado split nos dormitórios",
+      "Esquadrias em alumínio preto e sensores de presença nas circulações"
+    ],
+    proximidades:["Parque das Águas","Expotrade Convention Center","Carrefour Hipermercado","Terminal Pinhais","Campus do Instituto Federal do Paraná","Rod. João Leopoldo Jacomel","Escolas, mercados, farmácia, panificadora e restaurantes no entorno"]
+  },
+  {
+    slug:"now", nome:"NOW", status:"Lançamento", tipo:"Apartamento",
+    cidade:"Araucária", bairro:"Capela Velha",
+    endereco:"Rua Shigemi Seima, 60", coords:"-25.549401,-49.401174",
+    entrega:"31/03/2029",
+    dormitorios:"2 dormitórios", area:"43,99 a 44,17 m²", tipos:"Opções com Garden",
+    materiais:{
+      book:"docs/book-now.pdf",
+      simulador:"https://makeit-construtora.github.io/fluxo-now/",
+      tour:"https://tour.ultratour.com.br/makeit/now/project/index.html",
+      memorial:"docs/memorial-now.pdf",
+      imagensLink:""
+    },
+    zip:true,
+    foco:{ aberto:"35% 50%", fechado:"10% 50%" },
+    imagens:[
+      IM("now","NOW","Fachadas","fachada","Fachada com guarita"),
+      IM("now","NOW","Áreas comuns","horta-pomar-redario","Horta, pomar e redário"),
+      IM("now","NOW","Áreas comuns","praca-de-jogos","Praça de jogos"),
+      IM("now","NOW","Áreas comuns","playground","Playground, quiosque e espaço piquenique"),
+      IM("now","NOW","Áreas comuns","pet-place","Pet Place"),
+      IM("now","NOW","Áreas comuns","salao-de-festas","Salão de festas"),
+      IM("now","NOW","Áreas comuns","salao-de-jogos","Salão de jogos"),
+      IM("now","NOW","Áreas privativas","sala-e-cozinha","Sala e cozinha integradas"),
+      IM("now","NOW","Áreas privativas","sala-de-estar-e-jantar","Sala de estar e jantar"),
+      IM("now","NOW","Áreas privativas","quarto-1","Quarto 1"),
+      IM("now","NOW","Áreas privativas","quarto-2","Quarto 2"),
+      IM("now","NOW","Áreas privativas","lavanderia","Lavanderia"),
+      IM("now","NOW","Áreas privativas","sacada","Sacada com churrasqueira"),
+      IM("now","NOW","Áreas privativas","garden","Apartamento Garden"),
+      IM("now","NOW","Plantas","planta-tipo","Planta tipo","contain"),
+      IM("now","NOW","Plantas","pavimento-garden","Planta do pavimento tipo, garden","contain"),
+      IM("now","NOW","Plantas","implantacao","Implantação, com identificação das áreas","contain"),
+      IM("now","NOW","Plantas","implantacao-cortada","Implantação cortada, com identificação das áreas","contain")
+    ],
+    tipologias:[
+      { nome:"Apto 2Q", area:"43,99 a 44,17 m²", areaNum:43.99, areaAte:44.17, dorms:2, extra:"Opção Garden: + 12,20 a 22,37 m² de área descoberta" }
+    ],
+    areasComuns:["Guarita","Salão de Festas","Praça de Jogos","Espaço Delivery","Espaço Piquenique","Quiosque","Bicicletário","Redário","Salão de Jogos","Playground","Pet Place","Horta","Pomar"],
+    diferenciais:[
+      "3 blocos de 8 pavimentos, com 192 apartamentos (8 por pavimento) e 1 elevador por bloco",
+      "1 vaga de estacionamento descoberta por apartamento e 10 vagas para visitantes",
+      "Sacada com churrasqueira a carvão",
+      "Infraestrutura seca para ar-condicionado split nos dormitórios",
+      "Fachada em textura acrílica com pastilha cerâmica e esquadrias de alumínio branco",
+      "Sensores de presença em todas as circulações internas",
+      "Revestimento cerâmico na cozinha, na área de serviço e no banheiro",
+      "Bacia com caixa acoplada de acionamento duplo e forro de gesso no banheiro (exceto no último pavimento)",
+      "Medidores individuais de água, gás e energia e ponto elétrico para depurador"
+    ],
+    proximidades:["Araucária Acqua Park","Represa do Passaúna","Supermercado Condor Capela Velha","Avenida dos Pinheirais","Avenida das Araucárias (PR 421)","Rodovia do Xisto (BR 476)"]
+  },
+  {
+    slug:"essence", nome:"Essence", status:"ÚLTIMAS UNIDADES", tipo:"Apartamento",
+    cidade:"Curitiba", bairro:"Novo Mundo",
+    endereco:"Rua Affife Mansur, 688", coords:"",
+    entrega:"31/07/2028",
+    dormitorios:"1, 2 e 3 dormitórios", area:"A partir de 26 m²", tipos:"Opções com Garden e Duplex",
+    materiais:{
+      book:"docs/book-essence.pdf",
+      simulador:"https://makeit-construtora.github.io/fluxo-essence/",
+      tour:"https://tour.ultratour.com.br/makeit/essence/index.html",
+      memorial:"docs/memorial-essence.pdf",
+      imagensLink:""
+    },
+    zip:true,
+    foco:{ aberto:"50% 50%", fechado:"50% 50%" },
+    imagens:[
+      IM("ess","Essence","Fachadas","fachada-entardecer","Fachada ao entardecer"),
+      IM("ess","Essence","Fachadas","vista-dos-blocos","Vista dos blocos"),
+      IM("ess","Essence","Fachadas","fachada-portaria","Fachada com portaria"),
+      IM("ess","Essence","Áreas comuns","playground-infantil","Playground infantil"),
+      IM("ess","Essence","Áreas comuns","quadra-de-areia","Quadra de areia"),
+      IM("ess","Essence","Áreas comuns","praca-de-jogos","Praça de jogos e bicicletário"),
+      IM("ess","Essence","Áreas comuns","terraco-gourmet","Terraço gourmet"),
+      IM("ess","Essence","Áreas comuns","terraco-pizza","Terraço gourmet, espaço pizza"),
+      IM("ess","Essence","Áreas comuns","quiosque","Quiosque com churrasqueira e playground baby"),
+      IM("ess","Essence","Áreas comuns","piscina","Piscina"),
+      IM("ess","Essence","Áreas comuns","pet-place","Pet Place"),
+      IM("ess","Essence","Áreas comuns","salao-de-festas","Salão de festas"),
+      IM("ess","Essence","Áreas comuns","academia","Academia"),
+      IM("ess","Essence","Áreas comuns","brinquedoteca","Brinquedoteca"),
+      IM("ess","Essence","Áreas comuns","market","Market"),
+      IM("ess","Essence","Áreas comuns","coworking","Coworking"),
+      IM("ess","Essence","Áreas comuns","lavanderia-omo","Lavanderia OMO"),
+      IM("ess","Essence","Áreas comuns","pet-care","Pet Care"),
+      IM("ess","Essence","Áreas comuns","vista-aerea","Vista aérea do terraço"),
+      IM("ess","Essence","Áreas privativas","living-1q","Living, 1 quarto"),
+      IM("ess","Essence","Áreas privativas","suite-1q","Suíte, 1 quarto"),
+      IM("ess","Essence","Áreas privativas","living-2q","Living, 2 quartos"),
+      IM("ess","Essence","Áreas privativas","living-3q","Living, 3 quartos"),
+      IM("ess","Essence","Áreas privativas","suite-3q","Suíte, 3 quartos"),
+      IM("ess","Essence","Áreas privativas","quarto-2-3q","Quarto 2, 3 quartos"),
+      IM("ess","Essence","Áreas privativas","suite-2-3q","Suíte 2, 3 quartos"),
+      IM("ess","Essence","Áreas privativas","living-duplex-1","Living duplex"),
+      IM("ess","Essence","Áreas privativas","terraco-duplex-1","Terraço duplex"),
+      IM("ess","Essence","Áreas privativas","living-duplex-2","Living duplex, modelo 2"),
+      IM("ess","Essence","Áreas privativas","terraco-duplex-2","Terraço duplex com jacuzzi"),
+      IM("ess","Essence","Áreas privativas","garden","Apartamento Garden"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-1q","Planta 1 quarto","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-1q-garden","Planta 1 quarto, garden","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-2q-1","Planta 2 quartos (1)","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-2q-1-garden","Planta 2 quartos (1), garden","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-2q-2","Planta 2 quartos (2)","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-2q-2-garden","Planta 2 quartos (2), garden","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-2q-3","Planta 2 quartos (3)","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-2q-3-garden","Planta 2 quartos (3), garden","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-2q-4","Planta 2 quartos (4)","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-2q-4-garden","Planta 2 quartos (4), garden","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-3q-1","Planta 3 quartos (1)","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-3q-1-garden","Planta 3 quartos (1), garden","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","planta-3q-2","Planta 3 quartos (2)","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","duplex-1-inferior","Duplex modelo 1, piso inferior","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","duplex-1-superior","Duplex modelo 1, piso superior","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","duplex-2-inferior","Duplex modelo 2, piso inferior","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","duplex-2-superior","Duplex modelo 2, piso superior","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","duplex-3-inferior","Duplex modelo 3, piso inferior","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","duplex-3-superior","Duplex modelo 3, piso superior","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","duplex-4-inferior","Duplex modelo 4, piso inferior","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","duplex-4-superior","Duplex modelo 4, piso superior","contain"),
+      IM("ess","Essence","Plantas dos apartamentos","duplex-5-inferior","Duplex modelo 5, piso inferior","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-bloco-1","Pavimento tipo, bloco 1","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-bloco-1-garden","Pavimento térreo com garden, bloco 1","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-bloco-2","Pavimento tipo, bloco 2","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-bloco-2-garden","Pavimento térreo com garden, bloco 2","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-bloco-3","Pavimento tipo, bloco 3","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-bloco-3-garden","Pavimento térreo com garden, bloco 3","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-duplex-bloco-1-inferior","Pavimento duplex inferior, bloco 1","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-duplex-bloco-1-superior","Pavimento duplex superior, bloco 1","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-duplex-bloco-2-inferior","Pavimento duplex inferior, bloco 2","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-duplex-bloco-2-superior","Pavimento duplex superior, bloco 2","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-duplex-bloco-3-inferior","Pavimento duplex inferior, bloco 3","contain"),
+      IM("ess","Essence","Pavimentos e implantação","pav-duplex-bloco-3-superior","Pavimento duplex superior, bloco 3","contain"),
+      IM("ess","Essence","Pavimentos e implantação","implantacao","Implantação","contain"),
+      IM("ess","Essence","Pavimentos e implantação","implantacao-cortada","Implantação cortada","contain"),
+      IM("ess","Essence","Pavimentos e implantação","implantacao-identificada","Implantação com identificação das áreas","contain"),
+      IM("ess","Essence","Pavimentos e implantação","areas-comuns-piso-inferior","Áreas comuns do piso inferior, identificadas","contain")
+    ],
+    tipologias:[
+      { nome:"Apto 1Q", area:"A partir de 26 m²", areaNum:26, dorms:1, extra:"Opção Garden: + 7,84 a 16,42 m² de área descoberta" },
+      { nome:"Apto 2Q", area:"A partir de 45 m²", areaNum:45, dorms:2, extra:"Opção Garden: + 25,84 a 30,46 m² de área descoberta" },
+      { nome:"Apto 2Q com suíte", area:"A partir de 46,9 m²", areaNum:46.9, dorms:2, extra:"Opção Garden: + 15,69 a 32,66 m² de área descoberta" },
+      { nome:"Apto 3Q com suíte", area:"A partir de 51,9 m²", areaNum:51.9, dorms:3, extra:"Opção Garden: + 26,10 a 42,25 m² de área descoberta" },
+      { nome:"Duplex 3Q, modelo 1", area:"46,87 m² + 22,49 m²", areaNum:69.36, dorms:3, extra:"Piso inferior + piso superior interno, com terraço descoberto de 21,69 m²" },
+      { nome:"Duplex 3Q, modelo 2", area:"52,24 m² + 22,95 m²", areaNum:75.19, dorms:3, extra:"Piso inferior + piso superior interno, com terraço descoberto de 27,70 m²" },
+      { nome:"Duplex 3Q, modelo 3", area:"47,49 m² + 22,95 m²", areaNum:70.44, dorms:3, extra:"Piso inferior + piso superior interno, com terraço descoberto de 23,07 m²" },
+      { nome:"Duplex 3Q, modelo 4", area:"46,08 m² + 21,78 m²", areaNum:67.86, dorms:3, extra:"Piso inferior + piso superior interno, com terraço descoberto de 10,23 m²" },
+      { nome:"Duplex 3Q, modelo 5", area:"47,19 m² + 21,77 m²", areaNum:68.96, dorms:3, extra:"Piso inferior + piso superior interno, com terraço descoberto de 11,22 m²" }
+    ],
+    areasComuns:["Salão de Festas","Piscina","Redário","Fire Place","Terraço Gourmet","Quiosque com Churrasqueira","Praça de Jogos","Lavanderia OMO","Pet Care","Coworking","Bicicletário","Academia","Academia Externa","Quadra de Areia","Espaço Zen","Horta & Pomar","Pet Place","Brinquedoteca","Playground Baby","Playground Infantil","Solarium","Guarita","Market (espaço destinado)","Espaço Delivery (espaço destinado)"],
+    diferenciais:[
+      "3 blocos de 8 pavimentos, com elevador, e 256 unidades: 13 por pavimento no bloco 1, 8 no bloco 2 e 11 no bloco 3",
+      "Opções de apartamentos Garden e Duplex",
+      "Mais de 1.728 m² de áreas de lazer, equipadas e decoradas",
+      "198 vagas em edifício garagem de 3 pavimentos e áreas descobertas: 50 cobertas (21 duplas, para os duplex) e 148 descobertas, com 8 para PCD e 5 para visitantes com infraestrutura seca para carregamento elétrico",
+      "Infraestrutura seca para ar-condicionado nos quartos e no living",
+      "Possibilidade de ampliação do living (parede não estrutural)",
+      "Sacada com churrasqueira a carvão (exceto nos apartamentos de 1 quarto)",
+      "Medidores individuais de água, gás e energia, e infraestrutura para aquecimento de água a gás nas torneiras",
+      "Porcelanato na cozinha, no banheiro e na sacada, e forro de gesso nos banheiros (exceto no último pavimento)",
+      "Cobertura duplex com ponto para instalação de jacuzzi",
+      "Fachada em textura acrílica com pastilha cerâmica, esquadrias de alumínio preto e sensores de presença nas circulações"
+    ],
+    proximidades:["Em frente à UniSantaCruz"]
+  }
+];
+
+/* Condições comerciais, fornecidas para cada empreendimento.
+   Não modifica as demais informações, links, books ou galerias. */
+const CONDICOES_COMERCIAIS = {
+  horizon: [
+    { titulo:"Parcelamento", itens:[
+      "Parcelamento em até 60x — até 36x sem fiador."
+    ]},
+    { titulo:"Comprometimento de renda", itens:[
+      "Fluxo linear: até 30% da renda bruta do comprador.",
+      "Fluxo decrescente: até 40% da renda bruta do comprador."
+    ]},
+    { titulo:"Balões", itens:[
+      "3 balões: dez/2026, dez/2027 e dez/2028, limitados a 50% da renda bruta do comprador."
+    ]}
+  ],
+  now: [
+    { titulo:"Parcelamento", itens:[
+      "Risco máximo de parcelamento: 20% do valor total da venda.",
+      "29 parcelas mensais no período de obras.",
+      "24 parcelas mensais no pós-chaves, limitadas a R$ 15.000,00."
+    ]},
+    { titulo:"Fiador para o pós-chaves", itens:[
+      "Fiador obrigatório, sem restrições, com renda superior a R$ 2.400,00 e comprovação de renda formal."
+    ]},
+    { titulo:"Comprometimento mensal", itens:[
+      "Parcela linear: até 30% da renda.",
+      "Parcela decrescente: até 40% da renda."
+    ]},
+    { titulo:"Balões e intermediárias", itens:[
+      "Valor máximo por balão/intermediária: 50% da renda aprovada na Caixa.",
+      "Máximo de 1 balão por ano, com datas fixas em dez/2026, dez/2027 e dez/2028."
+    ]}
+  ],
+  edge: [
+    { titulo:"Parcelamento", itens:[
+      "Risco máximo de parcelamento: 22% do valor total da venda."
+    ]},
+    { titulo:"Comprometimento mensal", itens:[
+      "Mensal linear: até 30% da renda.",
+      "Mensal decrescente: até 40% da renda."
+    ]},
+    { titulo:"Pós-chaves", itens:[
+      "Fiador obrigatório no pós-chaves."
+    ]},
+    { titulo:"Balões", itens:[
+      "Valor máximo: 50% da renda aprovada na Caixa.",
+      "Máximo de 1 balão por ano, com datas fixas em dez/2026, dez/2027, dez/2028 e out/2029."
+    ]}
+  ],
+  essence: [
+    { titulo:"Parcelamento e renda", itens:[
+      "Risco máximo de parcelamento: 20% do valor total da venda.",
+      "Comprometimento mensal: até 30% da renda.",
+      "Balão + parcela mensal: máximo de 100% da renda bruta aprovada na Caixa."
+    ]},
+    { titulo:"Entrada — período de obras", itens:[
+      "21 parcelas mensais no período de obras.",
+      "2 balões: dez/2026 e dez/2027."
+    ]},
+    { titulo:"Pós-obra / pós-chaves", itens:[
+      "Pós-chaves de até R$ 15.000,00, com fiador.",
+      "24 parcelas mensais no pós-chaves.",
+      "Fiador obrigatório, sem restrições, com renda superior a R$ 2.400,00, mediante comprovação de renda formal ou apresentação de Imposto de Renda (IR)."
+    ]}
+  ]
+};
+
+/* ================================================================
+   APP
+   ================================================================ */
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const ICON = {
+  book:'<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
+  calc:'<rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8M16 14v4M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/>',
+  imgs:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/>',
+  doc:'<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M16 13H8M16 17H8M10 9H8"/>',
+  out:'<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
+  chev:'<path d="m9 18 6-6-6-6"/>',
+  chevl:'<path d="m15 18-6-6 6-6"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+  bed:'<path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/>',
+  scan:'<path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/>',
+  home:'<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01M9 13v.01M9 17v.01"/>',
+  pin:'<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+  down:'<path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/>',
+  tour:'<path d="M16.466 7.5C15.643 4.237 13.952 2 12 2 9.239 2 7 6.477 7 12s2.239 10 5 10c.342 0 .677-.069 1-.2"/><path d="m15.194 13.707 3.814 1.86-1.86 3.814"/><path d="M19 15.57c-1.804.885-4.274 1.43-7 1.43-5.523 0-10-2.239-10-5s4.477-5 10-5c4.838 0 8.873 1.718 9.8 4"/>',
+  expand:'<path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/>',
+  zin:'<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/>',
+  zout:'<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6"/>',
+  x:'<path d="M18 6 6 18M6 6l12 12"/>',
+  cam:'<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/>'
+};
+const svg = (n, s=20, w=2) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[n]}</svg>`;
+const MARK = (c1="#000", c2="#fff", s=44) => `<svg width="${s}" height="${s}" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" fill="${c1}"/><rect x="12" y="18" width="8" height="16" fill="${c2}"/><rect x="24" y="12" width="8" height="22" fill="${c2}"/></svg>`;
+
+/* Itens de material (mesma ordem em todo o site) */
+const MATS = [
+  { key:"book",      ic:"book", nome:"Book",      acao:"Abrir" },
+  { key:"simulador", ic:"calc", nome:"Simulador", acao:"Abrir" },
+  { key:"imagens",   ic:"imgs", nome:"Imagens",   acao:"Ver"   },
+  { key:"tour",      ic:"tour", nome:"Tour virtual", acao:"Abrir" },
+  { key:"memorial",  ic:"doc",  nome:"Memorial",  acao:"Abrir" }
+];
+/* Resolve o que cada material faz para um empreendimento */
+const imgSrc = im => im.id ? IMG[im.id] : im.src;
+const thSrc  = im => im.th ? IMG[im.th] : (im.id ? IMG[im.id] : (im.thumb || im.src));
+function matInfo(e, key){
+  const m = e.materiais;
+  if(key === "imagens"){
+    if(e.imagens.length) return { tipo:"galeria", acao:"Ver" };
+    if(m.imagensLink) return { tipo:"link", url:m.imagensLink, acao:"Baixar" };
+    return { tipo:"off" };
+  }
+  if(m[key] && m[key].startsWith("embed:")) return { tipo:"pdf", key:m[key].slice(6), acao:"Abrir" };
+  return m[key] ? { tipo:"link", url:m[key], acao:"Abrir" } : { tipo:"off" };
+}
+
+/* ----- Lista ----- */
+function tile(e, M){
+  const inf = matInfo(e, M.key);
+  const nome = M.key === "memorial" ? "Memorial descritivo" : M.nome;
+  const ic = `<span class="ti">${svg(M.ic,22,1.8)}</span>`;
+  const tx = a => `<span class="tx"><span class="tn">${nome}</span><span class="ta">${a}</span></span>`;
+  if(inf.tipo === "pdf") return `<button type="button" class="tl" data-pdf="${esc(inf.key)}">${ic}${tx(inf.acao + svg('out',11,2.6))}</button>`;
+  if(inf.tipo === "link") return `<a class="tl" href="${esc(inf.url)}" target="_blank" rel="noopener">${ic}${tx(inf.acao + svg('out',11,2.6))}</a>`;
+  if(inf.tipo === "galeria") return `<button type="button" class="tl" data-ficha="${e.slug}" data-go="gal">${ic}${tx(inf.acao + svg('chev',11,2.6))}</button>`;
+  return `<div class="tl off" aria-disabled="true">${ic}${tx("Em breve")}</div>`;
+}
+function cartao(e){
+  if(e.emBreve){
+    return `<article class="emp edge" id="${e.slug}" aria-label="${esc(e.nome)}, em breve">
+      <div class="ph">${MARK("#FF9100","#fff",64)}</div>
+      <div class="ct">
+        <div class="st"><span class="dot cz"></span>Em breve</div>
+        <div><h2>${esc(e.nome)}.</h2>
+        <p class="soon">Book, simulador, imagens e memorial descritivo entram aqui assim que forem liberados.</p></div>
+      </div>
+    </article>`;
+  }
+  const specs = [["bed", e.dormitorios], ["scan", e.area], ["home", e.tipos]];
+  return `<article class="emp" id="${e.slug}" aria-labelledby="t-${e.slug}">
+    <button type="button" class="ph" data-ficha="${e.slug}" aria-label="Abrir ficha do ${esc(e.nome)}">
+      <img src="${imgSrc(e.imagens[0])}" alt="${esc(e.imagens[0].alt)}" style="object-position:${e.foco.aberto}" loading="lazy" decoding="async">
+      <span class="cnt">${svg('cam',14,2.2)}${e.imagens.length} ${e.imagens.length === 1 ? "foto" : "fotos"}</span>
+    </button>
+    <div class="ct">
+      <div class="st"><span class="dot"></span>${esc(e.status)}</div>
+      <div class="hd">
+        <div><h2 id="t-${e.slug}"><span class="sr">Residencial </span>${esc(e.nome)}.</h2>
+        <p class="loc">${svg('pin',16,2)}${esc(e.bairro)}, ${esc(e.cidade)}</p></div>
+        <button type="button" class="ver" data-ficha="${e.slug}">Ver ficha completa <span class="ar">${svg('arrow',16,2.4)}</span></button>
+      </div>
+      <ul class="specs">${specs.map(([ic, tx]) => `<li>${svg(ic,18,1.8)}${esc(tx)}</li>`).join("")}</ul>
+      <div class="mb">${MATS.map(M => tile(e, M)).join("")}</div>
+      <a class="cv-tabela-card" href="${tabelaUrl(e.slug)}" target="_blank" rel="noopener noreferrer" aria-label="Baixar tabela de preços vigente do ${esc(e.nome)} em PDF">
+        <span class="cv-label"><span class="cv-icon">${svg('doc',16,2)}</span><span>Tabela de preços<small>PDF atualizado pelo CV CRM</small></span></span>
+        <span class="cv-end">Baixar PDF ↗</span>
+      </a>
+    </div>
+  </article>`;
+}
+
+/* ----- Busca e filtros ----- */
+const norm = s => String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const st = { q:"", cidade:"", bairro:"", tipo:"", status:"", dorms:[], area:0, ord:"padrao" };
+const unicos = (campo, base=EMPS) => [...new Set(base.map(e => e[campo]).filter(Boolean))].sort((a,b) => a.localeCompare(b,"pt-BR"));
+const opcoes = (sel, itens, vazio, atual) => { sel.innerHTML = `<option value="">${vazio}</option>` + itens.map(v => `<option>${esc(v)}</option>`).join(""); sel.value = itens.includes(atual) ? atual : ""; };
+const areaMax = e => e.tipologias ? Math.max(...e.tipologias.map(t => t.areaAte || t.areaNum)) : 0;
+const areaMin = e => e.tipologias ? Math.min(...e.tipologias.map(t => t.areaNum)) : 0;
+
+function casa(e){
+  if(st.q){
+    const hay = norm([e.nome, e.cidade, e.bairro, e.endereco, e.status, e.tipo].join(" "));
+    if(!norm(st.q).split(/\s+/).filter(Boolean).every(w => hay.includes(w))) return false;
+  }
+  if(st.cidade && e.cidade !== st.cidade) return false;
+  if(st.bairro && e.bairro !== st.bairro) return false;
+  if(st.tipo && e.tipo !== st.tipo) return false;
+  if(st.status && e.status !== st.status) return false;
+  if(st.dorms.length || st.area){
+    if(!e.tipologias) return false;
+    /* dormitórios e área são avaliados na MESMA tipologia */
+    const ok = e.tipologias.some(t => {
+      const d = Math.min(t.dorms, 3), a = t.areaAte || t.areaNum;
+      return (!st.dorms.length || st.dorms.includes(d)) && (!st.area || a >= st.area);
+    });
+    if(!ok) return false;
+  }
+  return true;
+}
+function ordenar(l){
+  const fim = e => e.emBreve ? 1 : 0;   /* "Em breve" sempre por último */
+  const base = l.map((e,i) => [e,i]);
+  base.sort((A,B) => {
+    const a = A[0], b = B[0];
+    if(fim(a) !== fim(b)) return fim(a) - fim(b);
+    if(st.ord === "areaDesc") return areaMax(b) - areaMax(a) || A[1] - B[1];
+    if(st.ord === "areaAsc")  return areaMin(a) - areaMin(b) || A[1] - B[1];
+    if(st.ord === "nome")     return a.nome.localeCompare(b.nome,"pt-BR");
+    return A[1] - B[1];
+  });
+  return base.map(x => x[0]);
+}
+const XICON = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>`;
+function tagsAtivas(){
+  const t = [];
+  if(st.q) t.push(["q", `Busca: “${st.q}”`]);
+  if(st.cidade) t.push(["cidade", st.cidade]);
+  if(st.bairro) t.push(["bairro", st.bairro]);
+  if(st.tipo) t.push(["tipo", st.tipo]);
+  if(st.status) t.push(["status", st.status]);
+  if(st.dorms.length) t.push(["dorms", "Dormitórios: " + [...st.dorms].sort().map(d => d === 3 ? "3+" : d).join(", ")]);
+  if(st.area) t.push(["area", `${st.area} m² ou mais`]);
+  return t;
+}
+function atualizar(){
+  /* bairro depende da cidade */
+  opcoes($("#fBairro"), unicos("bairro", EMPS.filter(e => !st.cidade || e.cidade === st.cidade)), "Todos", st.bairro);
+  st.bairro = $("#fBairro").value;
+  $("#fq").value !== st.q && ($("#fq").value = st.q);
+  $("#fCidade").value = st.cidade; $("#fTipo").value = st.tipo; $("#fStatus").value = st.status;
+  $("#fArea").value = String(st.area); $("#fOrd").value = st.ord;
+  document.querySelectorAll(".dorm button").forEach(b => b.setAttribute("aria-pressed", st.dorms.includes(+b.dataset.d)));
+
+  const tg = tagsAtivas();
+  $("#tags").innerHTML = tg.map(([k, txt]) => `<button type="button" class="tag-f" data-rm="${k}" aria-label="Remover filtro: ${esc(txt)}">${esc(txt)}${XICON}</button>`).join("");
+  const nx = (st.dorms.length ? 1 : 0) + (st.area ? 1 : 0), bn = $("#nExtra");
+  bn.textContent = nx; bn.classList.toggle("on", nx > 0);
+
+  const l = ordenar(EMPS.filter(casa));
+  const n = l.filter(e => !e.emBreve).length, s = l.length - n;
+  $("#total").innerHTML = (n || !s)
+    ? `<b>${n}</b> ${n === 1 ? "empreendimento" : "empreendimentos"}${s ? ` e ${s} em breve` : ""}`
+    : `<b>${s}</b> em breve`;
+  $("#cards").innerHTML = l.length ? l.map(cartao).join("")
+    : `<div class="vazio"><h3>Nada encontrado com esses filtros</h3><p>Tente remover algum filtro ou buscar por outro nome.</p><button type="button" id="btVazio">Limpar filtros</button></div>`;
+}
+function limpar(){ Object.assign(st, { q:"", cidade:"", bairro:"", tipo:"", status:"", dorms:[], area:0 }); atualizar(); }
+
+opcoes($("#fCidade"), unicos("cidade"), "Todas", "");
+opcoes($("#fTipo"), unicos("tipo"), "Todos", "");
+if(unicos("tipo").length < 2){ $("#celTipo").hidden = true; $(".seg").classList.add("sem-tipo"); }
+opcoes($("#fStatus"), unicos("status"), "Todos", "");
+let deb;
+$("#fq").addEventListener("input", ev => { clearTimeout(deb); deb = setTimeout(() => { st.q = ev.target.value.trim(); atualizar(); }, 140); });
+$("#fCidade").addEventListener("change", ev => { st.cidade = ev.target.value; atualizar(); });
+$("#fBairro").addEventListener("change", ev => { st.bairro = ev.target.value; atualizar(); });
+$("#fTipo").addEventListener("change", ev => { st.tipo = ev.target.value; atualizar(); });
+$("#fStatus").addEventListener("change", ev => { st.status = ev.target.value; atualizar(); });
+$("#fArea").addEventListener("change", ev => { st.area = +ev.target.value; atualizar(); });
+$("#fOrd").addEventListener("change", ev => { st.ord = ev.target.value; atualizar(); });
+document.querySelectorAll(".dorm button").forEach(b => b.addEventListener("click", () => {
+  const d = +b.dataset.d, i = st.dorms.indexOf(d);
+  i < 0 ? st.dorms.push(d) : st.dorms.splice(i, 1); atualizar();
+}));
+$("#btLimpar").addEventListener("click", limpar);
+$("#btMais").addEventListener("click", () => {
+  const ab = $("#extra").classList.toggle("open"); $("#btMais").setAttribute("aria-expanded", ab);
+});
+document.addEventListener("click", ev => {
+  const r = ev.target.closest("[data-rm]");
+  if(r){
+    const k = r.dataset.rm;
+    if(k === "dorms") st.dorms = []; else if(k === "area") st.area = 0; else st[k] = "";
+    if(k === "cidade") st.bairro = "";
+    atualizar(); return;
+  }
+  if(ev.target.closest("#btVazio")) limpar();
+});
+atualizar();
+
+/* ----- Ficha ----- */
+const dlg = $("#ficha");
+function mapaLink(e){
+  const q = e.coords ? e.coords : `${e.endereco}, ${e.bairro}, ${e.cidade}`;
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+}
+function row(icone, titulo, desc, url, acao, attrs=""){
+  if(url && url.startsWith("embed:")) return `<li><button type="button" class="mat" data-pdf="${esc(url.slice(6))}"><span class="mi">${svg(icone,20)}</span><span><strong>${titulo}</strong><small>${desc}</small></span><span class="ma">${acao}${svg('out',16,2.4)}</span></button></li>`;
+  if(!url && !attrs) return `<li><div class="mat off" aria-disabled="true"><span class="mi">${svg(icone,20)}</span><span><strong>${titulo}</strong><small>${desc}</small></span><span class="ma">Em breve</span></div></li>`;
+  if(attrs) return `<li><button type="button" class="mat" ${attrs}><span class="mi">${svg(icone,20)}</span><span><strong>${titulo}</strong><small>${desc}</small></span><span class="ma">${acao}${svg('chev',16,2.4)}</span></button></li>`;
+  return `<li><a class="mat" href="${esc(url)}" target="_blank" rel="noopener"><span class="mi">${svg(icone,20)}</span><span><strong>${titulo}</strong><small>${desc}</small></span><span class="ma">${acao}${svg('out',16,2.4)}</span></a></li>`;
+}
+const pTip = e => e.tipologias.map(t => `<div class="row"><b>${esc(t.nome)}</b><span>${esc(t.area)}</span><em>${esc(t.extra||"")}</em></div>`).join("");
+const pChips = a => `<ul class="chips">${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+const pList = a => `<ul class="list">${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+const pComercial = e => `<div class="condicoes" aria-label="Condições comerciais de ${esc(e.nome)}">
+  ${ (CONDICOES_COMERCIAIS[e.slug] || []).map(grupo => `
+    <section class="condicoes-grupo">
+      <h3>${esc(grupo.titulo)}</h3>
+      <ul>${grupo.itens.map(item => `<li>${esc(item)}</li>`).join("")}</ul>
+    </section>`).join("") }
+</div>`;
+
+let cur = null, gc = 0, gi = 0;
+const catsDe = e => { const m = new Map(); e.imagens.forEach(im => { const c = im.cat || ""; if(!m.has(c)) m.set(c, []); m.get(c).push(im); }); return [...m.entries()]; };
+function galHTML(){
+  const cs = catsDe(cur), l = cs[gc][1], im = l[gi], n = l.length, multi = cs.length > 1;
+  const nome = (im.titulo || cur.nome).replace(/[\\/:*?"<>|]/g, "");
+  return `
+    ${multi ? `<div class="gcats" role="tablist" aria-label="Categorias de imagens">${cs.map(([c, l2], k) => `<button type="button" role="tab" aria-selected="${k === gc}" data-gc="${k}">${esc(c)}<span>${l2.length}</span></button>`).join("")}</div>` : ""}
+    <div class="main ${im.fit === "contain" ? "contain" : ""}">
+      <img id="gImg" src="${imgSrc(im)}" alt="${esc(im.alt)}">
+      ${im.titulo ? `<span class="gcap">${esc(im.titulo)}</span>` : ""}
+      <button type="button" class="zm" data-zoom aria-label="Ampliar imagem" title="Ampliar">${svg('expand',17,2.2)}</button>
+      <button type="button" class="dl" data-dl aria-label="Baixar esta imagem em JPG" title="Baixar em JPG">${svg('down',18,2.2)}</button>
+      ${cur.imagens.length > 1 ? `<button type="button" class="nv pv" id="gP" aria-label="Imagem anterior">${svg('chevl',20,2.4)}</button><button type="button" class="nv nx" id="gN" aria-label="Próxima imagem">${svg('chev',20,2.4)}</button>` : ""}
+      <span class="gcnt">${gi + 1} / ${n}</span>
+    </div>
+    ${n > 1 ? `<div class="thumbs">${l.map((x, k) => `<button type="button" data-t="${k}" aria-label="Ver ${esc(x.titulo || "imagem " + (k + 1))}" ${k === gi ? 'aria-current="true"' : ''}><img src="${thSrc(x)}" alt="" loading="lazy"></button>`).join("")}</div>` : ""}
+    ${cur.zip ? `<button type="button" class="dlall" data-zip>${svg('down',18,2.2)}<span class="zl">Baixar todas as imagens</span> <span>ZIP</span></button>` : ""}`;
+}
+function pintaGal(){ $("#gal").innerHTML = galHTML(); }
+function fichaHTML(e){
+  const m = e.materiais, n = e.imagens.length;
+  const abas = [["tip","Tipologias",pTip(e)],["areas","Áreas comuns",pChips(e.areasComuns)],["dif","Diferenciais",pList(e.diferenciais)],["perto","Por perto",pList(e.proximidades)],["com","Condições comerciais",pComercial(e)]];
+  const fatos = [["Dormitórios", e.dormitorios.replace(" dormitórios","")],["Metragem", e.area], e.entrega ? ["Entrega", e.entrega] : null].filter(Boolean);
+  const imgsRow = n
+    ? row('imgs','Imagens',`${n} imagens do empreendimento`, "", 'Ver galeria', 'data-go="gal"')
+    : row('imgs','Imagens','Imagens do empreendimento', m.imagensLink,'Baixar');
+  return `
+  <div class="fgrid">
+    <div class="gal" id="gal">${galHTML()}</div>
+    <div class="info">
+      <ul class="tags"><li class="o">${esc(e.status)}</li></ul>
+      <h2 id="fh"><span class="sr">Residencial </span>${esc(e.nome)}.</h2>
+      <p class="f-loc">${esc(e.bairro)}, ${esc(e.cidade)}</p>
+      <p class="addr">${esc(e.endereco)}. <a href="${mapaLink(e)}" target="_blank" rel="noopener">Ver no mapa</a></p>
+      <dl class="ffacts">${fatos.map(f=>`<div><dt>${f[0]}</dt><dd>${esc(f[1])}</dd></div>`).join("")}</dl>
+      <ul class="mats">
+        ${row('book','Book','Apresentação completa em PDF', m.book,'Abrir')}
+        ${row('calc','Simulador','Simule a compra com seu cliente', m.simulador,'Abrir')}
+        ${imgsRow}
+        ${row('tour','Tour virtual','Visite o empreendimento em 360°', m.tour,'Abrir')}
+        ${row('doc','Memorial descritivo','Acabamentos e especificações', m.memorial,'Abrir')}
+      </ul>
+      <a class="cv-tabela-ficha" href="${tabelaUrl(e.slug)}" target="_blank" rel="noopener noreferrer" aria-label="Baixar tabela de preços vigente do ${esc(e.nome)} em PDF">
+        <span class="cv-label"><span class="cv-icon">${svg('doc',19,2)}</span><span>Tabela de preços do CV CRM<small>Arquivo PDF com tabela vigente do empreendimento</small></span></span>
+        <span class="cv-end">Baixar PDF ↗</span>
+      </a>
+      <button type="button" class="comercial-atalho" data-go="com" aria-controls="pn-com">
+        <span>${svg('doc',17,1.9)} Ver condições comerciais</span>
+        ${svg('chev',17,2.1)}
+      </button>
+    </div>
+  <div class="more" id="tabs">
+    <div class="tabs" role="tablist" aria-label="Detalhes">
+      ${abas.map((a,k)=>`<button type="button" role="tab" id="tb-${a[0]}" aria-controls="pn-${a[0]}" aria-selected="${k===0}" tabindex="${k===0?0:-1}">${a[1]}</button>`).join("")}
+    </div>
+    ${abas.map((a,k)=>`<div class="panel" role="tabpanel" id="pn-${a[0]}" aria-labelledby="tb-${a[0]}" ${k?'hidden':''}>${a[2]}</div>`).join("")}
+  </div>
+  </div>
+  <div class="fmais" id="fmais"><button type="button" id="fmaisBt">Mais informações ${svg('chev',15,2.4)}</button></div>`;
+}
+function setImg(k){
+  const cs = catsDe(cur);
+  if(!cs.length) return;
+  // Percorre a categoria seguinte/anterior ao passar do seu limite.
+  if(k >= cs[gc][1].length){
+    gc = (gc + 1) % cs.length;
+    gi = 0;
+  } else if(k < 0){
+    gc = (gc - 1 + cs.length) % cs.length;
+    gi = cs[gc][1].length - 1;
+  } else {
+    gi = k;
+  }
+  pintaGal();
+}
+/* Indicador "Mais informações": aparece enquanto houver conteúdo abaixo na ficha */
+function atualizaMais(){
+  const f = $("#fmais"); if(!f) return;
+  const resta = dlg.scrollHeight - dlg.clientHeight - dlg.scrollTop;
+  f.classList.toggle("off", resta < 40);
+}
+dlg.addEventListener("scroll", atualizaMais, { passive:true });
+window.addEventListener("resize", () => { if(dlg.open) atualizaMais(); });
+function abrir(slug, go){
+  cur = EMPS.find(x => x.slug === slug); if(!cur || cur.emBreve) return;
+  gc = 0; gi = 0;
+  $("#fbody").innerHTML = fichaHTML(cur);
+  dlg.setAttribute("aria-labelledby","fh");
+  dlg.scrollTop = 0;
+  if(!dlg.open) dlg.showModal();
+  document.body.classList.add("lock");
+  initFicha();
+  if(go === "gal") $("#gal").scrollIntoView({block:"start"});
+  $("#fmaisBt").onclick = () => dlg.scrollBy({ top: Math.round(dlg.clientHeight * .7), behavior:"smooth" });
+  requestAnimationFrame(atualizaMais);
+  document.querySelectorAll("#gal img").forEach(i => i.addEventListener("load", atualizaMais, { once:true }));
+}
+function initFicha(){
+  /* galeria: delegação, porque o conteúdo é redesenhado a cada troca */
+  $("#gal").onclick = ev => {
+    if(ev.target.id === "gImg"){ abrirZoom(); return; }
+    const bt = ev.target.closest("button"); if(!bt) return;
+    if(bt.dataset.zoom !== undefined){ abrirZoom(); return; }
+    if(bt.id === "gP") setImg(gi - 1);
+    else if(bt.id === "gN") setImg(gi + 1);
+    else if(bt.dataset.t !== undefined) setImg(+bt.dataset.t);
+    else if(bt.dataset.gc !== undefined){ gc = +bt.dataset.gc; gi = 0; pintaGal(); }
+  };
+  document.querySelectorAll('#fbody [data-go="gal"]').forEach(b => b.onclick = () => $("#gal").scrollIntoView({behavior:"smooth",block:"center"}));
+  const tabs = [...document.querySelectorAll('#tabs [role="tab"]')];
+  const go = t => { tabs.forEach(b => { const on = b === t; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1;
+    document.getElementById(b.getAttribute("aria-controls")).hidden = !on; }); t.focus(); };
+  tabs.forEach((t,i) => {
+    t.onclick = () => go(t);
+    t.onkeydown = ev => { if(ev.key==="ArrowRight") go(tabs[(i+1)%tabs.length]); if(ev.key==="ArrowLeft") go(tabs[(i-1+tabs.length)%tabs.length]); };
+  });
+  document.querySelectorAll('#fbody [data-go="com"]').forEach(b => b.onclick = () => {
+    const t = document.getElementById('tb-com');
+    if(t){ go(t); t.scrollIntoView({behavior:"smooth",block:"center"}); }
+  });
+}
+
+/* ----- PDFs embutidos: abrem em nova aba a partir do próprio arquivo ----- */
+function abrirPdf(k){
+  if(typeof PDFS === "undefined" || !PDFS[k]){ alert("O arquivo ainda está carregando. Aguarde alguns segundos e tente de novo."); return; }
+  const bin = atob(PDFS[k]), u8 = new Uint8Array(bin.length);
+  for(let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+  const url = URL.createObjectURL(new Blob([u8], {type:"application/pdf"}));
+  const w = window.open(url, "_blank");
+  if(!w) location.href = url;
+  setTimeout(() => URL.revokeObjectURL(url), 120000);
+}
+/* ----- ZIP montado no navegador (sem compressão, os JPG já são comprimidos) ----- */
+const CRC = (() => { const t = new Uint32Array(256); for(let n = 0; n < 256; n++){ let c = n; for(let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+const crc32 = u8 => { let c = 0xFFFFFFFF; for(let i = 0; i < u8.length; i++) c = CRC[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+function montaZip(arqs){
+  const enc = new TextEncoder(), partes = [], central = [];
+  let off = 0;
+  const agora = new Date(), dt = ((agora.getFullYear() - 1980) << 9) | ((agora.getMonth() + 1) << 5) | agora.getDate(), tm = (agora.getHours() << 11) | (agora.getMinutes() << 5) | (agora.getSeconds() >> 1);
+  arqs.forEach(({nome, dados}) => {
+    const n = enc.encode(nome), crc = crc32(dados);
+    const lh = new DataView(new ArrayBuffer(30));
+    lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0x0800, true); lh.setUint16(8, 0, true);
+    lh.setUint16(10, tm, true); lh.setUint16(12, dt, true); lh.setUint32(14, crc, true);
+    lh.setUint32(18, dados.length, true); lh.setUint32(22, dados.length, true); lh.setUint16(26, n.length, true); lh.setUint16(28, 0, true);
+    partes.push(lh.buffer, n, dados);
+    const ch = new DataView(new ArrayBuffer(46));
+    ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true); ch.setUint16(8, 0x0800, true); ch.setUint16(10, 0, true);
+    ch.setUint16(12, tm, true); ch.setUint16(14, dt, true); ch.setUint32(16, crc, true);
+    ch.setUint32(20, dados.length, true); ch.setUint32(24, dados.length, true); ch.setUint16(28, n.length, true);
+    ch.setUint32(42, off, true);
+    central.push(ch.buffer, n);
+    off += 30 + n.length + dados.length;
+  });
+  const tamCentral = central.reduce((s, p) => s + p.byteLength, 0);
+  const fim = new DataView(new ArrayBuffer(22));
+  fim.setUint32(0, 0x06054b50, true); fim.setUint16(8, arqs.length, true); fim.setUint16(10, arqs.length, true);
+  fim.setUint32(12, tamCentral, true); fim.setUint32(16, off, true);
+  return new Blob([...partes, ...central, fim.buffer], {type:"application/zip"});
+}
+async function paraJpeg(uri){
+  const img = new Image(); img.src = uri; await img.decode();
+  const c = document.createElement("canvas"); c.width = img.naturalWidth; c.height = img.naturalHeight;
+  const x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height); x.drawImage(img, 0, 0);
+  return await new Promise(r => c.toBlob(r, "image/jpeg", 0.92));
+}
+const limpaNome = s => s.replace(/[\\/:*?"<>|]/g, "");
+function salvaBlob(blob, nome){
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = nome;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+async function baixarImagem(){
+  const im = catsDe(cur)[gc][1][gi];
+  salvaBlob(await paraJpeg(imgSrc(im)), `${cur.nome} - ${limpaNome(im.titulo || "imagem " + (gi + 1))}.jpg`);
+}
+let zipOcupado = false;
+async function baixarZip(){
+  if(zipOcupado) return; zipOcupado = true;
+  const e = cur, n = e.imagens.length, arqs = [];
+  try{
+    for(let i = 0; i < n; i++){
+      const lb = document.querySelector(".dlall .zl"); if(lb) lb.textContent = `Preparando ${i + 1} de ${n}`;
+      const im = e.imagens[i], blob = await paraJpeg(IMG[im.id]);
+      arqs.push({ nome: `${e.nome} - Imagens/${limpaNome(im.cat)}/${limpaNome(im.titulo)}.jpg`, dados: new Uint8Array(await blob.arrayBuffer()) });
+    }
+    salvaBlob(montaZip(arqs), `${e.nome} - Imagens.zip`);
+  } finally {
+    zipOcupado = false; const lb = document.querySelector(".dlall .zl"); if(lb) lb.textContent = "Baixar todas as imagens";
+  }
+}
+document.addEventListener("click", ev => {
+  const p = ev.target.closest("[data-pdf]"); if(p){ abrirPdf(p.dataset.pdf); return; }
+  if(ev.target.closest("[data-zip]")) { baixarZip(); return; }
+  if(ev.target.closest("[data-dl]")) baixarImagem();
+});
+
+function fechar(){ fecharZoom(); if(dlg.open) dlg.close(); }
+dlg.addEventListener("close", () => document.body.classList.remove("lock"));
+$("#fx").onclick = fechar;
+dlg.addEventListener("click", ev => { if(ev.target === dlg) fechar(); });
+dlg.addEventListener("keydown", ev => {
+  if(!$("#gP") || ev.target.closest('[role="tablist"]')) return;
+  if(ev.key === "ArrowLeft") setImg(gi - 1);
+  if(ev.key === "ArrowRight") setImg(gi + 1);
+});
+document.addEventListener("click", ev => {
+  const b = ev.target.closest("[data-ficha]");
+  if(b && !dlg.contains(b)) abrir(b.dataset.ficha, b.dataset.go);
+});
+
+/* ----- Imagem ampliada (ficha completa) ----- */
+const zdlg = $("#zoom"), zSt = $("#zSt"), zImg = $("#zImg");
+$("#zX").innerHTML = svg('x',20,2.2);
+$("#zoom [data-dl]").innerHTML = svg('down',19,2.2);
+$("#zP").innerHTML = svg('chevl',22,2.4);
+$("#zN").innerHTML = svg('chev',22,2.4);
+let zOn = false, zArr = null;
+function zoomEstado(on, px, py){
+  zOn = on;
+  const b = $("#zTog");
+  b.innerHTML = svg(on ? 'zout' : 'zin', 19, 2.2);
+  b.setAttribute("aria-label", on ? "Afastar" : "Aproximar"); b.title = on ? "Afastar" : "Aproximar";
+  const tq = matchMedia("(hover: none)").matches;
+  $("#zDica").textContent = on ? (tq ? "Deslize para mover. Toque para afastar" : "Arraste para mover. Clique para afastar") : (tq ? "Toque na imagem para aproximar" : "Clique na imagem para aproximar");
+  if(!on){ zSt.classList.remove("on"); zImg.style.width = ""; return; }
+  const r = zRet();
+  const fx = px == null ? .5 : (px - r.left) / r.width, fy = py == null ? .5 : (py - r.top) / r.height;
+  const alvo = Math.max(r.width * 1.75, (zImg.naturalWidth || r.width) * 1.25);
+  zSt.classList.add("on"); zImg.style.width = Math.round(alvo) + "px";
+  requestAnimationFrame(() => {
+    zSt.scrollLeft = zImg.offsetWidth * fx - zSt.clientWidth / 2;
+    zSt.scrollTop  = zImg.offsetHeight * fy - zSt.clientHeight / 2;
+  });
+}
+/* área realmente ocupada pela foto dentro do quadro (object-fit: contain) */
+function zRet(){
+  const b = zImg.getBoundingClientRect(), nw = zImg.naturalWidth || b.width, nh = zImg.naturalHeight || b.height;
+  const k = Math.min(b.width / nw, b.height / nh), w = nw * k, h = nh * k;
+  return { left: b.left + (b.width - w) / 2, top: b.top + (b.height - h) / 2, width: w, height: h };
+}
+function pintaZoom(){
+  const cs = catsDe(cur), [cat, l] = cs[gc], im = l[gi];
+  zImg.src = imgSrc(im); zImg.alt = im.alt || "";
+  $("#zTit").textContent = im.titulo || cur.nome;
+  $("#zSub").textContent = `${cur.nome}. ${cat ? cat + ", " : ""}${gi + 1} de ${l.length}`;
+  const varias = cur.imagens.length > 1;
+  $("#zP").hidden = !varias; $("#zN").hidden = !varias;
+  zoomEstado(false);
+}
+function abrirZoom(){
+  if(!cur) return;
+  pintaZoom();
+  if(!zdlg.open) zdlg.showModal();
+  $("#zX").focus();
+}
+function fecharZoom(){ if(zdlg.open) zdlg.close(); }
+zdlg.addEventListener("close", () => { zoomEstado(false); const b = $('#gal [data-zoom]'); if(b) b.focus(); });
+const zPasso = d => { setImg(gi + d); pintaZoom(); };
+$("#zX").onclick = fecharZoom;
+$("#zP").onclick = () => zPasso(-1);
+$("#zN").onclick = () => zPasso(1);
+$("#zTog").onclick = () => zoomEstado(!zOn);
+zdlg.addEventListener("keydown", ev => {
+  if(ev.key === "ArrowLeft"){ ev.preventDefault(); zPasso(-1); }
+  if(ev.key === "ArrowRight"){ ev.preventDefault(); zPasso(1); }
+  if(ev.key === "+" || ev.key === "="){ if(!zOn) zoomEstado(true); }
+  if(ev.key === "-"){ if(zOn) zoomEstado(false); }
+});
+/* clique na imagem alterna aproximar/afastar; clique no fundo fecha */
+zSt.addEventListener("click", ev => {
+  if(zArr && zArr.moveu) return;
+  if(zOn){ zoomEstado(false); return; }
+  const r = zRet(), dentro = ev.target === zImg && ev.clientX >= r.left && ev.clientX <= r.left + r.width && ev.clientY >= r.top && ev.clientY <= r.top + r.height;
+  if(dentro) zoomEstado(true, ev.clientX, ev.clientY); else fecharZoom();
+});
+/* arrastar com o mouse para mover a imagem aproximada (no toque, a rolagem é nativa) */
+zSt.addEventListener("pointerdown", ev => {
+  if(!zOn || ev.pointerType !== "mouse" || ev.button !== 0) return;
+  zArr = { x: ev.clientX, y: ev.clientY, sl: zSt.scrollLeft, st: zSt.scrollTop, moveu: false };
+});
+window.addEventListener("pointermove", ev => {
+  if(!zArr) return;
+  const dx = ev.clientX - zArr.x, dy = ev.clientY - zArr.y;
+  if(!zArr.moveu && Math.abs(dx) + Math.abs(dy) > 5){ zArr.moveu = true; zSt.classList.add("drag"); }
+  if(zArr.moveu){ zSt.scrollLeft = zArr.sl - dx; zSt.scrollTop = zArr.st - dy; }
+});
+window.addEventListener("pointerup", () => { zSt.classList.remove("drag"); if(zArr) setTimeout(() => { zArr = null; }, 0); });
+
+/* ----- Tabela de preços: o PDF leva alguns segundos para ser gerado no Worker.
+   Mostra "Gerando PDF" e ignora cliques repetidos (cada clique consome a cota do Browser Run). ----- */
+document.addEventListener("click", ev => {
+  const a = ev.target.closest(".cv-tabela-card, .cv-tabela-ficha"); if(!a) return;
+  if(a.getAttribute("aria-busy") === "true"){ ev.preventDefault(); return; }
+  const fim = a.querySelector(".cv-end"), txt = fim ? fim.textContent : "";
+  a.setAttribute("aria-busy", "true"); if(fim) fim.textContent = "Gerando PDF…";
+  setTimeout(() => { a.removeAttribute("aria-busy"); if(fim) fim.textContent = txt; }, 15000);
+});
+
+/* ----- Contato (só aparece se preenchido) ----- */
+(function contato(){
+  const wa = CONTATO.whatsapp ? "https://wa.me/" + CONTATO.whatsapp : "";
+  const c = $("#navCta"); if(wa){ c.href = wa; c.target = "_blank"; c.rel = "noopener"; c.hidden = false; }
+  const it = [];
+  if(wa) it.push(`<a href="${wa}" target="_blank" rel="noopener">WhatsApp${CONTATO.telefone ? " " + esc(CONTATO.telefone) : ""}</a>`);
+  if(CONTATO.email) it.push(`<a href="mailto:${esc(CONTATO.email)}">${esc(CONTATO.email)}</a>`);
+  if(it.length){ const b = $("#contato"); b.innerHTML = it.join(""); b.hidden = false; }
+})();
+/* ----- Pop-up da condição comercial do mês -----
+   Para a próxima campanha: troque o conteúdo do <dialog id="promo"> e as datas abaixo.
+   Depois de PROMO_ATE, o pop-up e o botão flutuante somem sozinhos. */
+const PROMO_ID = "out26";
+const PROMO_ATE = new Date("2026-10-31T23:59:59-03:00");
+(function(){
+  const pdlg = $("#promo"), fab = $("#prFab");
+  if(!pdlg || Date.now() > PROMO_ATE.getTime()) return;
+  fab.hidden = false;
+  const abrirPromo = () => { if(!pdlg.open){ pdlg.showModal(); fab.hidden = true; document.body.classList.add("lock"); } };
+  const fecharPromo = () => { if(pdlg.open) pdlg.close(); };
+  pdlg.addEventListener("close", () => {
+    fab.hidden = false;
+    if(!(dlg && dlg.open)) document.body.classList.remove("lock");
+    try { sessionStorage.setItem("promo-visto", PROMO_ID); } catch(e) {}
+  });
+  pdlg.addEventListener("click", ev => { if(ev.target === pdlg) fecharPromo(); });
+  $("#prX").onclick = fecharPromo;
+  $("#prOk").onclick = fecharPromo;
+  fab.onclick = abrirPromo;
+  let visto = false;
+  try { visto = sessionStorage.getItem("promo-visto") === PROMO_ID; } catch(e) {}
+  if(!visto) setTimeout(abrirPromo, 600);
+})();
+
+$("#ano").textContent = "© " + new Date().getFullYear();
+</script>
+
+</body>
+</html>
